@@ -1,5 +1,6 @@
 const mensajeController = {
 
+    // Metodo enviarMensaje
     enviarMensaje: function (req, res) {
 
       return res.status(200).json(
@@ -13,6 +14,7 @@ const mensajeController = {
 
     },
 
+    // Metodo recibirMensaje
     recibirMensaje: function (req, res) {
 
       const mensaje_recibido = req.body.mensaje_enviado

@@ -1,13 +1,19 @@
 import React, {useState, useEffect} from 'react'
-import { recibirMensaje, enviarMensaje } from '../server/mensajeApi'
+import { recibir_mensaje, enviar_mensaje } from '../server/mensajeApi'
 
+// Pantalla de Prueba
 export default function MensajeScreen() {
 
+  // Estado Inicial
   const [mensaje, setMensaje] = useState("Hola")
 
+  // Use Effect de para pintar el mensaje apenas se carga la pagina
   useEffect(() => {
     
-    recibirMensaje()
+    /* Consumo del endpoint "enviarMensaje" del backend 
+       llamando al metodo "recibir_mensaje" del frontend */
+
+    recibir_mensaje()
       .then((res) => {
           setMensaje(res.data.mensaje)
         }
@@ -19,10 +25,15 @@ export default function MensajeScreen() {
 
   }, [])
   
+  // Manejador del boton para enviar mensaje
   const handleEnviarMensaje = () => {
 
+    /* Definicion del mensaje y
+       Consumo del endpoint "recibirMensaje" del backend 
+       llamando al metodo "enviar_mensaje" del frontend */
+
     const mensaje = {mensaje_enviado: "Envio de Mensaje"}
-    enviarMensaje(mensaje)
+    enviar_mensaje(mensaje)
 
   }
 

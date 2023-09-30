@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { enviarMensaje, recibirMensaje } = require('../controllers/mensajeController');
 
+// Enpoint para enviarMensaje
 router.route('/enviarMensaje')
       .post(
             (req, res) => {
@@ -8,6 +9,7 @@ router.route('/enviarMensaje')
             }
         );
 
+// Endpoint para recibirMensaje
 router.route('/recibirMensaje')
       .post(
             (req, res) => {

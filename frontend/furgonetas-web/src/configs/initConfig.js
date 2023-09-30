@@ -2,6 +2,7 @@ const ambiente = 'local';
 const urlAmbiente = {
     local:
     {
+        // Chequear la IP del PC y reemplazar
         host: 'http://192.168.1.14:3002',
     },
 };
