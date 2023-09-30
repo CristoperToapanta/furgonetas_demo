@@ -1,11 +1,18 @@
 const router = require('express').Router();
-const { enviarMensaje } = require('../controllers/mensajeController');
+const { enviarMensaje, recibirMensaje } = require('../controllers/mensajeController');
 
-router.route('/mensaje')
+router.route('/enviarMensaje')
       .post(
             (req, res) => {
                 enviarMensaje(req, res);
             }
         );
+
+router.route('/recibirMensaje')
+      .post(
+            (req, res) => {
+                recibirMensaje(req, res);
+            }
+          );
 
 module.exports = router;

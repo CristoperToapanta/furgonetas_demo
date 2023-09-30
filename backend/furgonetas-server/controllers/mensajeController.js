@@ -2,13 +2,28 @@ const mensajeController = {
 
     enviarMensaje: function (req, res) {
 
-      console.log("Mensaje Recibido: " + req.body.mensaje);
+      return res.status(200).json(
+        { 
+            result: true,
+            code: 200,
+            mensaje: "Mensaje desde el Back",
+            
+        }
+      ); 
+
+    },
+
+    recibirMensaje: function (req, res) {
+
+      const mensaje_recibido = req.body.mensaje_enviado
+      console.log("Mensaje desde el Front:", mensaje_recibido)
 
       return res.status(200).json(
         { 
             result: true,
             code: 200,
-            mensaje: req.body.mensaje,
+            mensaje: "Se ha recibido el Mensaje",
+            
         }
       ); 
 
