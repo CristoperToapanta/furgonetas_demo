@@ -3,7 +3,9 @@ const urlAmbiente = {
     local:
     {
         // Chequear la IP del PC y reemplazar
-        host: 'http://192.168.1.14:3002',
+        // host: 'http://192.168.1.14:3002', // Casa
+        host: 'http://192.168.1.10:3002', // Patio
+
     },
 };
 

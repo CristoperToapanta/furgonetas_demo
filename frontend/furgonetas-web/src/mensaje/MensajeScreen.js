@@ -15,7 +15,13 @@ export default function MensajeScreen() {
 
     recibir_mensaje()
       .then((res) => {
-          setMensaje(res.data.mensaje)
+
+          console.log('Mensaje desde el Back: ', res)
+          if(res.data.mensaje != undefined){
+            setMensaje(res.data.mensaje)
+
+          }
+          
         }
       )
       .catch((err) => {
