@@ -15,12 +15,18 @@ import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStati
 import GroupsIcon from '@mui/icons-material/Groups';
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 
-export default function SideMenu({ drawerOpen }) {
+import { Link } from 'react-router-dom'
+
+export default function SideMenu({ drawerOpen, toggleDrawer }) {
 
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const cerrarSideMenu = () => {
+    toggleDrawer(false);
   };
 
   return (
@@ -30,7 +36,6 @@ export default function SideMenu({ drawerOpen }) {
       anchor="left"
       open={drawerOpen}
       sx={{
-        width: 240,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: 290,
@@ -47,7 +52,10 @@ export default function SideMenu({ drawerOpen }) {
         }}
       >
         <ListItem 
-            button
+          button 
+          component={Link} 
+          to="/"
+          onClick={cerrarSideMenu}
         >
           <ListItemIcon>
             <MonitorIcon
@@ -103,6 +111,9 @@ export default function SideMenu({ drawerOpen }) {
             <ListItem 
               button 
               sx={{ pl: 4 }}
+              component={Link} 
+              to="embarque"
+              onClick={cerrarSideMenu}
             >
               <ListItemIcon>
                 <TransferWithinAStationIcon 

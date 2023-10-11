@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 //import App from './App';
-import MensajeScreen from './mensaje/MensajeScreen';
 import reportWebVitals from './reportWebVitals';
-import MainScreen from './main/MainScreen';
+import NavigationRouter from './navigation/NavigationRouter';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-  <>
-    <MainScreen/>
-  </>
+  <Router>
+    <NavigationRouter />
+  </Router>,
 
   // <React.StrictMode>
   /* { <App /> } */

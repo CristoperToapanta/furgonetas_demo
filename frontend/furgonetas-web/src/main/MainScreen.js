@@ -1,10 +1,10 @@
 import React from 'react';
-import {
-    Box
-} from '@mui/material'
+import { Box } from '@mui/material';
 
 import HeaderMenu from './components/HeaderMenu';
 import SideMenu from './components/SideMenu';
+
+import { Outlet } from 'react-router-dom';
 
 export default function MainScreen() {
 
@@ -16,35 +16,40 @@ export default function MainScreen() {
 
     return (
 
-        <Box
-            sx={{
-                display: 'flex'
-            }}
+        <Box 
+           sx={{ 
+                display: 'flex' 
+           }}
         >
 
-            <HeaderMenu
-                toggleDrawer={toggleDrawer}
-            />
+            <Box
+                sx={{
+                    position: 'fixed',
+                    zIndex: 1,
+                }}
+            >
+                <HeaderMenu
+                    toggleDrawer={toggleDrawer}
+                />
+                <SideMenu
+                    drawerOpen={drawerOpen}
+                    toggleDrawer={toggleDrawer}
+                />
 
-            <SideMenu
-                drawerOpen={drawerOpen}
-            />
-
+            </Box>
 
             <Box
                 component="main"
                 sx={{
                     flexGrow: 1,
-                    p: 3
+                    p: 3,
+                    marginTop: '64px'
                 }}
             >
-             
-                
+                <Outlet />
+
             </Box>
 
-
         </Box>
-
     );
-
 }
