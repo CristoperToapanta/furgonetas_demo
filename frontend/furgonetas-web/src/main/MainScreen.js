@@ -5,6 +5,7 @@ import HeaderMenu from './components/HeaderMenu';
 import SideMenu from './components/SideMenu';
 
 import { Outlet } from 'react-router-dom';
+import EmbarqueModal from '../embarque/components/EmbarqueModal';
 
 export default function MainScreen() {
 
@@ -35,7 +36,6 @@ export default function MainScreen() {
                     drawerOpen={drawerOpen}
                     toggleDrawer={toggleDrawer}
                 />
-
             </Box>
 
             <Box
@@ -47,9 +47,11 @@ export default function MainScreen() {
                 }}
             >
                 <Outlet />
-
             </Box>
 
+            <EmbarqueModal />
+
         </Box>
+
     );
 }

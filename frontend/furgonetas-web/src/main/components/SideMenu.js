@@ -1,12 +1,12 @@
 import React from 'react';
-import { 
-    Drawer, 
-    List, 
-    ListItem, 
-    ListItemIcon, 
-    ListItemText, 
-    Collapse, 
-    Typography 
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
+  Typography
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -15,11 +15,22 @@ import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStati
 import GroupsIcon from '@mui/icons-material/Groups';
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  Slide,
+} from '@mui/material';
+
 import { Link } from 'react-router-dom'
+import EmbarqueModal from '../../embarque/components/EmbarqueModal';
 
 export default function SideMenu({ drawerOpen, toggleDrawer }) {
 
   const [open, setOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -29,12 +40,20 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
     toggleDrawer(false);
   };
 
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   return (
 
     <Drawer
       variant="persistent"
       anchor="left"
-      open={drawerOpen}
+      //open={drawerOpen}
       sx={{
         flexShrink: 0,
         '& .MuiDrawer-paper': {
@@ -46,14 +65,14 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
         zIndex: (theme) => theme.zIndex.drawer,
       }}
     >
-      <List 
-        sx={{ 
-            marginTop: '64px' 
+      <List
+        sx={{
+          marginTop: '64px'
         }}
       >
-        <ListItem 
-          button 
-          component={Link} 
+        <ListItem
+          button
+          component={Link}
           to="/"
           onClick={cerrarSideMenu}
         >
@@ -75,9 +94,9 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
             </Typography>
           </ListItemText>
         </ListItem>
-        
-        <ListItem 
-          button 
+
+        <ListItem
+          button
           onClick={handleClick}
         >
           <ListItemIcon>
@@ -99,63 +118,74 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
           </ListItemText>
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <Collapse 
-          in={open} 
-          timeout="auto" 
+        <Collapse
+          in={open}
+          timeout="auto"
           unmountOnExit
         >
-          <List 
-            component="div" 
+          <List
+            component="div"
             disablePadding
           >
-            <ListItem 
-              button 
+            <ListItem
+              button
               sx={{ pl: 4 }}
-              component={Link} 
+              component={Link}
               to="embarque"
-              onClick={cerrarSideMenu}
+              onClick={
+                handleDialogOpen
+              }
             >
               <ListItemIcon>
-                <TransferWithinAStationIcon 
-                    style={{
-                        color: 'black',
-                        textShadow: '1px 1px 1px rgba(255, 255, 255, 0.8)',
-                      }}
+                <TransferWithinAStationIcon
+                  style={{
+                    color: 'black',
+                    textShadow: '1px 1px 1px rgba(255, 255, 255, 0.8)',
+                  }}
                 />
               </ListItemIcon>
               <ListItemText>
                 <Typography
-                    variant="body1"
-                    color="black"
+                  variant="body1"
+                  color="black"
                 >
-                    Embarque
+                  Embarque
                 </Typography>
               </ListItemText>
             </ListItem>
-            <ListItem 
-              button 
+            <ListItem
+              button
               sx={{ pl: 4 }}
             >
               <ListItemIcon>
-                <GroupsIcon 
-                    style={{
-                        color: 'black',
-                        textShadow: '1px 1px 1px rgba(255, 255, 255, 0.8)',
-                      }}
+                <GroupsIcon
+                  style={{
+                    color: 'black',
+                    textShadow: '1px 1px 1px rgba(255, 255, 255, 0.8)',
+                  }}
                 />
               </ListItemIcon>
               <ListItemText>
                 <Typography
-                    variant="body1"
-                    color="black"
+                  variant="body1"
+                  color="black"
                 >
-                    Listado
+                  Listado
                 </Typography>
               </ListItemText>
             </ListItem>
           </List>
         </Collapse>
       </List>
+
+      <EmbarqueModal 
+         dialogOpen={dialogOpen}
+         setDialogOpen={setDialogOpen}
+         handleDialogOpen={handleDialogOpen}
+         handleDialogClose={handleDialogClose}
+      />
+
     </Drawer>
+
   );
 }
