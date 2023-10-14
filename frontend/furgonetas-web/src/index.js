@@ -2,20 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 //import App from './App';
-import MensajeScreen from './mensaje/MensajeScreen';
 import reportWebVitals from './reportWebVitals';
+import NavigationRouter from './navigation/NavigationRouter';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-  <>
-    <MensajeScreen />
-  </>
+  <Router>
+    <NavigationRouter />
+  </Router>,
 
   // <React.StrictMode>
-    /* { <App /> } */
+  /* { <App /> } */
   // </React.StrictMode>
-  
+
 );
 
 // If you want to start measuring performance in your app, pass a function
