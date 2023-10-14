@@ -11,7 +11,13 @@ app.use(express.urlencoded({limit: '50mb', extended: true, parameterLimit: 50000
 
 // Ruta principal
 const mensaje = require('./routes/mensaje')
-app.use('/prueba', mensaje)
+const furgoneta = require('./routes/furgoneta')
+const conductor = require('./routes/conductor')
+
+app.use('/prueba',mensaje, furgoneta, conductor)
+//app.use(furgoneta)
+
+
 
 server.listen(port, () => {
     console.log('Servidor en el puerto:'+ port)
