@@ -19,7 +19,7 @@ export default function HeaderMenu({toggleDrawer}) {
 
             <Toolbar>
 
-                {/* <IconButton
+                <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     onClick={toggleDrawer}
@@ -29,7 +29,7 @@ export default function HeaderMenu({toggleDrawer}) {
                     }}
                 >
                     <MenuIcon />
-                </IconButton> */}
+                </IconButton>
 
                 <Typography
                     style={{

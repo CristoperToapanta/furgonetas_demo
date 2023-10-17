@@ -16,7 +16,8 @@ export default function EmbarqueModal({
     dialogOpen,
     setDialogOpen,
     handleDialogOpen,
-    handleDialogClose
+    handleDialogClose,
+    cerrarSideMenu
 }) {
 
     return (
@@ -45,9 +46,10 @@ export default function EmbarqueModal({
             </DialogTitle>
 
             <DialogContent>
-                 <EmbarqueFormulario 
-                     handleDialogClose={handleDialogClose}
-                 />
+                <EmbarqueFormulario 
+                    handleDialogClose={handleDialogClose}
+                    cerrarSideMenu={cerrarSideMenu}
+                />
             </DialogContent>
 
 

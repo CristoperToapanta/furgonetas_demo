@@ -17,7 +17,8 @@ import {
 } from '@mui/material';
 
 export default function EmbarqueFormulario({
-    handleDialogClose
+    handleDialogClose,
+    cerrarSideMenu
 }) {
 
     const [cedula, setCedula] = useState('');
@@ -122,7 +123,10 @@ export default function EmbarqueFormulario({
                 >
 
                     <Button
-                        onClick={handleDialogClose}
+                        onClick={()=>{
+                            cerrarSideMenu()
+                            handleDialogClose()
+                        }}
                         sx={{
                             marginRight: '10px',
                             padding: '15px',

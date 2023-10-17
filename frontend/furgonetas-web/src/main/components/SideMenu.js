@@ -15,19 +15,10 @@ import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStati
 import GroupsIcon from '@mui/icons-material/Groups';
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Slide,
-} from '@mui/material';
-
 import { Link } from 'react-router-dom'
 import EmbarqueModal from '../../embarque/components/EmbarqueModal';
 
-export default function SideMenu({ drawerOpen, toggleDrawer }) {
+export default function SideMenu({ drawerOpen, toggleDrawer}) {
 
   const [open, setOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -53,7 +44,8 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
     <Drawer
       variant="persistent"
       anchor="left"
-      //open={drawerOpen}
+      open={drawerOpen}
+      transitionDuration={300}
       sx={{
         flexShrink: 0,
         '& .MuiDrawer-paper': {
@@ -183,6 +175,7 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
          setDialogOpen={setDialogOpen}
          handleDialogOpen={handleDialogOpen}
          handleDialogClose={handleDialogClose}
+         cerrarSideMenu={cerrarSideMenu}
       />
 
     </Drawer>
