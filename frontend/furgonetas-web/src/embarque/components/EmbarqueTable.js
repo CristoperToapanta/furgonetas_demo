@@ -6,38 +6,42 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
+function createData(informacion, edad, institucion, embarque, desembarque) {
+    return { informacion, edad, institucion, embarque, desembarque };
 }
 
 const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    // Agrega más filas de datos aquí
+    createData('Kevin Rodriguez', 27, 'Unidad Educativa "Urcuqui"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Bryan Cachimuel', 25, 'Instituto Tecnologico "17 de Julio"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Cristoper Toapanta', 25, 'Instituto Tecnologico "17 de Julio"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Edgar Quezada', 24, 'Unidad Educativa "Mariano Suarez Ventimilla"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Richard Tarupi', 26, 'Unidad Educativa "Tulcan"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Josue Alba', 29, 'Colegio Tecnico "Ciudad de Ibarra"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Nelson Cacoango', 26, 'Instituto Tecnologico "Otavalo"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Kevin Rodriguez', 27, 'Unidad Educativa "Urcuqui"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Bryan Cachimuel', 25, 'Instituto Tecnologico "17 de Julio"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Cristoper Toapanta', 25, 'Instituto Tecnologico "17 de Julio"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Edgar Quezada', 24, 'Unidad Educativa "Mariano Suarez Ventimilla"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Richard Tarupi', 26, 'Unidad Educativa "Tulcan"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Josue Alba', 29, 'Colegio Tecnico "Ciudad de Ibarra"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Nelson Cacoango', 26, 'Instituto Tecnologico "Otavalo"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Kevin Rodriguez', 27, 'Unidad Educativa "Urcuqui"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Bryan Cachimuel', 25, 'Instituto Tecnologico "17 de Julio"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Cristoper Toapanta', 25, 'Instituto Tecnologico "17 de Julio"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Edgar Quezada', 24, 'Unidad Educativa "Mariano Suarez Ventimilla"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Richard Tarupi', 26, 'Unidad Educativa "Tulcan"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Josue Alba', 29, 'Colegio Tecnico "Ciudad de Ibarra"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
+    createData('Nelson Cacoango', 26, 'Instituto Tecnologico "Otavalo"', "22/09/23 07:00:00", "22/09/23 12:45:00"),
 ];
 
 export default function EmbarqueTable() {
+
+    const [pasajeros, setPasajeros] = useState([])
+
     return (
         <TableContainer
             component={Paper}
@@ -54,25 +58,33 @@ export default function EmbarqueTable() {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell align='center' > 
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> INFORMACIÓN </Typography>
+                        </TableCell>
+                        <TableCell align='center'> 
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> EDAD </Typography>
+                        </TableCell>
+                        <TableCell align='center'> 
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> INSTITUCIÓN </Typography>
+                        </TableCell>
+                        <TableCell align='center'> 
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> HORA DE EMBARQUE </Typography>
+                        </TableCell>
+                        <TableCell align='center'> 
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> HORA DE DESEMBARQUE </Typography>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow
-                            key={row.name}
+                            key={row.informacion}
                         >
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align='center'>{row.informacion}</TableCell>
+                            <TableCell align='center'>{row.edad}</TableCell>
+                            <TableCell align='center'>{row.institucion}</TableCell>
+                            <TableCell align='center'>{row.embarque}</TableCell>
+                            <TableCell align='center'>{row.desembarque}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
