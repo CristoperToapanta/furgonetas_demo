@@ -13,8 +13,9 @@ app.use(express.urlencoded({limit: '50mb', extended: true, parameterLimit: 50000
 const mensaje = require('./routes/mensaje')
 const furgoneta = require('./routes/furgoneta')
 const conductor = require('./routes/conductor')
+const pasajero = require('./routes/pasajero')
 
-app.use('/prueba',mensaje, furgoneta, conductor)
+app.use('/prueba',mensaje, furgoneta, conductor, pasajero)
 //app.use(furgoneta)
 
 
