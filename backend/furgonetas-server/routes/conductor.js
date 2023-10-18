@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {listarConductor, crear, listar} = require('../controllers/ConductorController');
+const {listarConductor, crear} = require('../controllers/ConductorController');
 
 router.route('/listado-conductores')
       .get(

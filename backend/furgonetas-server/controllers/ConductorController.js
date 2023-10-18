@@ -12,18 +12,12 @@ const conductorController = {
                 console.log("Error en la consulta de listado de conductores: ", err);
             });
     },
-    
-  /*Método para listar furgonetas
-  listar: async function (req, res) {
-    const listado = await conductorConsultas.consultarConductores();
-    res.json(listado); 
-  },*/
 
     // Método para crear nuevas conductores
     crear: async function (req, res) {
-        const { id_furgoneta,cedula_conductor, nombre_conductor,estado_conductor,edad_conductor,tipo_licencia_coductor,direccion_conductor } = req.body;
+        const { id_furgoneta,cedula_conductor,nombre_conductor,estado_conductor,edad_conductor,tipo_licencia_coductor,direccion_conductor } = req.body;
         await conductorConsultas
-            .crearConductor(id_furgoneta,cedula_conductor, nombre_conductor,estado_conductor,edad_conductor,tipo_licencia_coductor,direccion_conductor)
+            .crearConductor(id_furgoneta,cedula_conductor,nombre_conductor,estado_conductor,edad_conductor,tipo_licencia_coductor,direccion_conductor)
             .then((msj) => {
                 console.log("Respuesta de la Consulta de Creación de conductores: ", msj);
                 return res.status(200).json({
