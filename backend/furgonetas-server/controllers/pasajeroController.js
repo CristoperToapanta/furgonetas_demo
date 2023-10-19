@@ -15,9 +15,9 @@ const pasajeroController = {
     }, 
 
     crearPasajero: async function(req, res){
-        const {id_furgoneta,cedula_conductor,nombre_conductor,estado_conductor,edad_conductor,tipo_licencia_coductor,direccion_conductor} = req.body;
+        const {id_representante,cedula_pasajero,nombre_pasajero,estado_pasajero,direccion_pasajero,edad_pasajero,institucion_pasajero,direccion_institucion} = req.body;
         await pasajeroConsultas
-            .crearPasajero(id_furgoneta,cedula_conductor,nombre_conductor,estado_conductor,edad_conductor,tipo_licencia_coductor,direccion_conductor)
+            .crearPasajero(id_representante,cedula_pasajero,nombre_pasajero,estado_pasajero,direccion_pasajero,edad_pasajero,institucion_pasajero,direccion_institucion)
             .then((msj) => {
                 console.log("Respuesta de la Consulta de Creación de pasajeros: ", msj);
                 return res.status(200).json({

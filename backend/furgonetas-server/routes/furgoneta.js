@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {listarFurgonetas, crear} = require('../controllers/furgonetaController');
 
 router.route('/listado-furgonetas')
-      .post(
+      .get(
         (req, res) => {
             listarFurgonetas(req, res);
         }
