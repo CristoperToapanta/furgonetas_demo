@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box
 } from '@mui/material';
 import EmbarqueTable from './components/EmbarqueTable';
 
 export default function EmbarqueScreen() {
+
   return (
     <Box
       mt={3}

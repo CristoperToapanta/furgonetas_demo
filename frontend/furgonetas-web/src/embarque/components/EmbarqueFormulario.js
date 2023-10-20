@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
     Button,
     Dialog,
@@ -15,6 +15,8 @@ import {
     Paper,
     Box,
 } from '@mui/material';
+import { insertar_pasajero } from '../../server/pasajeroApi';
+import { AccionContext } from '../../context/AccionesContext';
 
 export default function EmbarqueFormulario({
     handleDialogClose,
@@ -28,6 +30,24 @@ export default function EmbarqueFormulario({
     const [direccion, setDireccion] = useState('');
     const [institucionEducativa, setInstitucionEducativa] = useState('');
     const [direccionInstitucion, setDireccionInstitucion] = useState('');
+
+    // Llamar al contexto
+    const { accionPasajeros } = useContext( AccionContext );
+
+    const handleIngresarPasajero = (data) => {
+
+        insertar_pasajero(data)
+            .then((res) => {
+                // Ejecutar el evento del contexto al insertar un nuevo pasajero
+                // al insertar se ejecuta la bandera dentro del metodo
+                accionPasajeros()
+                console.log("Se inserto?: ", res)
+            })
+            .catch((err) => {
+                console.log("Ocurrio un error al insertar el pasajero: ", err)
+            })
+
+    }
 
     return (
         <>
@@ -104,6 +124,15 @@ export default function EmbarqueFormulario({
                         margin="normal"
                     />
                 </Grid>
+                <Grid item xs={8} ml={15} mr={15}>
+                    <TextField
+                        label="Direccion Institucion"
+                        fullWidth
+                        value={direccionInstitucion}
+                        onChange={(e) => setDireccionInstitucion(e.target.value)}
+                        margin="normal"
+                    />
+                </Grid>
             </Grid>
 
             <DialogActions
@@ -124,8 +153,21 @@ export default function EmbarqueFormulario({
 
                     <Button
                         onClick={()=>{
+
+                            const data_pasajero = {
+                                "id_representante": 1, 
+                                "cedula_pasajero": cedula, 
+                                "nombre_pasajero": nombre+' '+apellido, 
+                                "estado_pasajero": true, 
+                                "direccion_pasajero": direccion, 
+                                "edad_pasajero": edad, 
+                                "institucion_pasajero": institucionEducativa, 
+                                "direccion_institucion": direccionInstitucion
+                            }
+
+                            handleIngresarPasajero(data_pasajero)
                             cerrarSideMenu()
-                            handleDialogClose()
+                            handleDialogClose() 
                         }}
                         sx={{
                             marginRight: '10px',

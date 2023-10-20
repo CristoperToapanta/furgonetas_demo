@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppBar, Box, Grid, Toolbar, Typography } from '@mui/material';
 
 import HeaderMenu from './components/HeaderMenu';
@@ -33,6 +33,7 @@ export default function MainScreen() {
                 <SideMenu
                     drawerOpen={drawerOpen}
                     toggleDrawer={toggleDrawer}
+
                 />
             </Box>
 

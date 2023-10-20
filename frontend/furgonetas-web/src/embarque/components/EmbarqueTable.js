@@ -1,4 +1,5 @@
 import {
+    Box,
     Paper,
     Table,
     TableBody,
@@ -8,7 +9,9 @@ import {
     TableRow,
     Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { consultar_pasajeros } from '../../server/pasajeroApi';
+import { AccionContext } from '../../context/AccionesContext';
 
 function createData(informacion, edad, institucion, embarque, desembarque) {
     return { informacion, edad, institucion, embarque, desembarque };
@@ -40,7 +43,24 @@ const rows = [
 
 export default function EmbarqueTable() {
 
+    // Importar Contexto y sus variables
+    const { recargarPasajeros } = useContext(AccionContext);
     const [pasajeros, setPasajeros] = useState([])
+
+    useEffect(() => {
+
+        consultar_pasajeros()
+            .then((res) => {
+                console.log("Lista: ", res.data.lista)
+                setPasajeros(res.data.lista)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    // Escuchar el cambio del evento de la bandera del contexto
+    // para actualizar la lista
+    }, [recargarPasajeros])
 
     return (
         <TableContainer
@@ -58,36 +78,58 @@ export default function EmbarqueTable() {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align='center' > 
+                        <TableCell align='center' >
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> ID </Typography>
+                        </TableCell>
+                        <TableCell align='center' >
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> CÉDULA </Typography>
+                        </TableCell>
+                        <TableCell align='center' >
                             <Typography fontWeight={'bold'} fontSize={'16px'}> INFORMACIÓN </Typography>
                         </TableCell>
-                        <TableCell align='center'> 
+                        <TableCell align='center'>
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> ORIGEN </Typography>
+                        </TableCell>
+                        <TableCell align='center'>
                             <Typography fontWeight={'bold'} fontSize={'16px'}> EDAD </Typography>
                         </TableCell>
-                        <TableCell align='center'> 
-                            <Typography fontWeight={'bold'} fontSize={'16px'}> INSTITUCIÓN </Typography>
+                        <TableCell align='center'>
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> INSTITUCION </Typography>
                         </TableCell>
-                        <TableCell align='center'> 
-                            <Typography fontWeight={'bold'} fontSize={'16px'}> HORA DE EMBARQUE </Typography>
-                        </TableCell>
-                        <TableCell align='center'> 
-                            <Typography fontWeight={'bold'} fontSize={'16px'}> HORA DE DESEMBARQUE </Typography>
+                        <TableCell align='center'>
+                            <Typography fontWeight={'bold'} fontSize={'16px'}> MATRIZ </Typography>
                         </TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            key={row.informacion}
-                        >
-                            <TableCell align='center'>{row.informacion}</TableCell>
-                            <TableCell align='center'>{row.edad}</TableCell>
-                            <TableCell align='center'>{row.institucion}</TableCell>
-                            <TableCell align='center'>{row.embarque}</TableCell>
-                            <TableCell align='center'>{row.desembarque}</TableCell>
+                {pasajeros.length > 0 ? (
+                    <TableBody>
+                        {pasajeros.map((row) => (
+
+                            <TableRow
+                                key={row.nombre_pasajero}
+                            >
+                                <TableCell align='center'>{row.id_pasajero}</TableCell>
+                                <TableCell align='center'>{row.cedula_pasajero}</TableCell>
+                                <TableCell align='center'>{row.nombre_pasajero}</TableCell>
+                                <TableCell align='center'>{row.direccion_pasajero}</TableCell>
+                                <TableCell align='center'>{row.edad_pasajero}</TableCell>
+                                <TableCell align='center'>{row.institucion_pasajero}</TableCell>
+                                <TableCell align='center'>{row.direccion_pasajero}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                ) : (
+                    <TableBody>
+                        <TableRow>
+                            <TableCell colSpan={5} sx={{ height: '25vh' }}>
+                                <Typography variant="h6" align="center" sx={{ fontWeight: 'bold' }}>
+                                    SIN DATOS
+                                </Typography>
+                            </TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
+                    </TableBody>
+                )}
+
             </Table>
         </TableContainer>
     );
