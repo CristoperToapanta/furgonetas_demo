@@ -2,7 +2,7 @@ const conductorConsultas = require("../database/consultas/conductorConsultas");
 
 const conductorController = {
     // Método para listar conductores
-    listarConductor: async function (req, res) {
+    /*listarConductor: async function (req, res) {
         await conductorConsultas
             .consultarConductores()
             .then((msj) => {
@@ -11,6 +11,11 @@ const conductorController = {
             .catch((err) => {
                 console.log("Error en la consulta de listado de conductores: ", err);
             });
+    },*/
+
+    listarConductor: async function(req, res){
+        let lista = await conductorConsultas.consultarConductores();
+        res.json(lista);
     },
 
     // Método para crear nuevas conductores

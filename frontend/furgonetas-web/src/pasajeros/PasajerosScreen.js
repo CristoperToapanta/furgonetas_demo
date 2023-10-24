@@ -1,7 +1,8 @@
+import initConfig from '../configs/initConfig';
 import { Box, Button, Modal, TextField, Stack } from '@mui/material';
 import React, {useState} from 'react';
 import PasajerosTabla from './components/PasajerosTabla';
-
+import axios from 'axios';
 
 const style = {
   position: 'absolute',
@@ -17,6 +18,7 @@ const style = {
   pb: 3,
 };
 
+const URI = initConfig.host + "/prueba/crear-pasajero";
 
 export default function PasajerosScreen() {
  
@@ -28,19 +30,26 @@ export default function PasajerosScreen() {
     setOpen(false);
   };
 
+    const [idrepresentante, setIdRepresentante] = useState('');
     const [cedula, setCedula] = useState('');
     const [nombre, setNombre] = useState('');
-    const [apellido, setApellido] = useState('');
     const [edad, setEdad] = useState('');
     const [direccion, setDireccion] = useState('');
     const [institucionEducativa, setInstitucionEducativa] = useState('');
     const [direccionInstitucion, setDireccionInstitucion] = useState('');
- 
-    function handleSubmit(event) {
+    const [genero, setGenero] = useState('');
+
+
+    /*function handleSubmit(event) {
         event.preventDefault();
-        console.log(cedula, nombre, apellido, edad, direccion, institucionEducativa, direccionInstitucion) 
+        console.log(idrepresentante, cedula, nombre, apellido, edad, direccion, institucionEducativa, direccionInstitucion) 
+    }*/
+
+    const guardar = async (e) => {
+      e.preventDefault()
+      await axios.post(URI, {id_representante: idrepresentante, cedula_pasajero:cedula, nombre_pasajero:nombre, edad_pasajero:edad, direccion_pasajero:direccion, institucion_pasajero:institucionEducativa, direccion_institucion:direccionInstitucion, genero:genero})
     }
-  
+
     return (
       <div>
       <Button variant="contained" color="warning" onClick={handleOpen}>Crear Pasajero</Button>
@@ -53,9 +62,20 @@ export default function PasajerosScreen() {
         <Box sx={{ ...style, width: 400 }}>
         <React.Fragment>
             <h2>Agregar Pasajero</h2>
-            <form onSubmit={handleSubmit}>
-            
-                  <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
+            <form onSubmit={guardar}>
+
+                    <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
+                    <TextField
+                        type="number"
+                        variant='outlined'
+                        color='warning'
+                        label="Id Representante"
+                        onChange={e => setIdRepresentante(e.target.value)}
+                        value={idrepresentante}
+                        fullWidth
+                        required
+                    />
+
                     <TextField
                         type="text"
                         variant='outlined'
@@ -66,7 +86,11 @@ export default function PasajerosScreen() {
                         fullWidth
                         required
                     />
-                    </Stack>
+               
+                  </Stack>
+
+  
+                   
                     <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                     <TextField
                         type="text"
@@ -78,22 +102,10 @@ export default function PasajerosScreen() {
                         fullWidth
                         required
                     />
-                
-                <TextField
-                        type="text"
-                        variant='outlined'
-                        color='warning'
-                        label="Apellido"
-                        onChange={e => setApellido(e.target.value)}
-                        value={apellido}
-                        fullWidth
-                        required
-                    />
-                </Stack>
-
+                    </Stack>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                 <TextField
-                        type="text"
+                        type="number"
                         variant='outlined'
                         color='warning'
                         label="Edad"
@@ -139,9 +151,22 @@ export default function PasajerosScreen() {
                         fullWidth
                         required
                     />
-                    </Stack>
+                  </Stack>
 
-                <Button variant="contained" color="warning" type="submit">Agregar</Button>
+                  <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
+                    <TextField
+                        type="text"
+                        variant='outlined'
+                        color='warning'
+                        label="Género"
+                        onChange={e => setGenero(e.target.value)}
+                        value={genero}
+                        fullWidth
+                        required
+                    />
+                  </Stack>
+
+                <Button variant="contained" color="warning" type="submit">Agregar</Button>      
             </form>
         </React.Fragment>
         </Box>

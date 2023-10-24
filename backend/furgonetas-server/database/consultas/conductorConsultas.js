@@ -2,9 +2,9 @@ const conexion = require('../conexion');
 
 var conductorConsultas = {
 
-    consultarConductores: async function(){
+    consultarConductores: function(){
 
-        let query = `SELECT * FROM hypermovilidad.tbl_conductor`;
+        let query = `select tf.placa_furgoneta,tc.cedula_conductor,tc.nombre_conductor,tc.edad_conductor,tc.tipo_licencia_conductor,tc.direccion_conductor from hypermovilidad.tbl_conductor tc inner join hypermovilidad.tbl_furgoneta tf on tc.id_furgoneta=tf.id_furgoneta`;
 
         return conexion.any(query);
 

@@ -1,8 +1,11 @@
+import initConfig from '../../configs/initConfig'
 import axios from 'axios'
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -25,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 
 
-  const URI = "http://192.168.1.6:3002/prueba/listado-pasajeros";
+  const URI = initConfig.host + "/prueba/listado-pasajeros";
   
 
 export default function PasajerosTabla() {
@@ -46,26 +49,26 @@ export default function PasajerosTabla() {
       <TableHead>
         <TableRow>
           <StyledTableCell>Representante</StyledTableCell>
-          <StyledTableCell align="right">Cédula Pasajero</StyledTableCell>
-          <StyledTableCell align="right">Nombre Pasajero</StyledTableCell>
-          <StyledTableCell align="right">Estado</StyledTableCell>
-          <StyledTableCell align="right">Dirección Pasajero</StyledTableCell>
-          <StyledTableCell align="right">Edad Pasajero</StyledTableCell>
-          <StyledTableCell align="right">Institución Pasajero</StyledTableCell>
-          <StyledTableCell align="right">Dirección Institución</StyledTableCell>
+          <StyledTableCell align="center">Cédula Pasajero</StyledTableCell>
+          <StyledTableCell align="center">Nombre Pasajero</StyledTableCell>
+          <StyledTableCell align="center">Dirección Pasajero</StyledTableCell>
+          <StyledTableCell align="center">Edad Pasajero</StyledTableCell>
+          <StyledTableCell align="center">Institución Pasajero</StyledTableCell>
+          <StyledTableCell align="center">Dirección Institución</StyledTableCell>
+          <StyledTableCell align="center">Género Pasajero</StyledTableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {pasajeros.map((pasajero) => (
           <StyledTableRow key={pasajero.id_pasajero}>
-            <StyledTableCell align="right">{pasajero.id_representante}</StyledTableCell>
-            <StyledTableCell align="right">{pasajero.cedula_pasajero}</StyledTableCell>
-            <StyledTableCell align="right">{pasajero.nombre_pasajero}</StyledTableCell>
-            <StyledTableCell align="right">{pasajero.estado_pasajero}</StyledTableCell>
-            <StyledTableCell align="right">{pasajero.direccion_pasajero}</StyledTableCell>
-            <StyledTableCell align="right">{pasajero.edad_pasajero}</StyledTableCell>
-            <StyledTableCell align="right">{pasajero.institucion_pasajero}</StyledTableCell>
-            <StyledTableCell align="right">{pasajero.direccion_institucion}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.nombre_representante}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.cedula_pasajero}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.nombre_pasajero}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.direccion_pasajero}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.edad_pasajero}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.institucion_pasajero}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.direccion_institucion}</StyledTableCell>
+            <StyledTableCell align="center">{pasajero.genero}</StyledTableCell>
           </StyledTableRow>
         ))}
       </TableBody>
