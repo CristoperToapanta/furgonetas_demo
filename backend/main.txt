@@ -1,1 +1,67 @@
 test
+
+import React, { useState } from 'react'
+import { 
+    Box, 
+    AppBar, 
+    Toolbar, 
+    IconButton, 
+    Typography,
+    Drawer
+} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+
+export default function MainScreen() {
+
+    const [abrirSide, setAbrirSide] = useState(false)
+    const [cerrarSide, setCerrarSide] = useState(false)
+
+    return (
+
+        <Box sx={{ flexGrow: 1 }}>
+
+          <AppBar 
+            position="static"
+            sx={{
+                height: '70px'
+            }}
+            style={{
+                justifyContent: 'center',
+                alignContent: 'center',
+                
+                justifySelf : 'center',
+                alignSelf: 'center'
+            }}
+          >
+            
+            <Toolbar variant="dense">
+
+              <IconButton 
+                edge="start" 
+                color="inherit" 
+                aria-label="menu" 
+                sx={{ mr: 2 }}
+                onClick={() => {
+                    
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <Typography 
+                variant="h6" 
+                color="inherit" 
+                component="div"
+              >
+                Furgonetas
+              </Typography>
+
+            </Toolbar>
+
+          </AppBar>
+
+        </Box>
+
+      );
+
+}

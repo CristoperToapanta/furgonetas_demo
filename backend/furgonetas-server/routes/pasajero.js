@@ -1,18 +1,18 @@
 const router = require('express').Router();
-const {listarPasajero, crearPasajero} = require('../controllers/pasajeroController');
+const { insertarPasajero, consultarPasajeros } = require('../controllers/pasajerosController');
 
-router.route('/listado-pasajeros')
-    .get(
+router.route('/registrar-pasajero')
+    .post(
         (req, res) => {
-            listarPasajero(req, res);
+            insertarPasajero(req, res);
         }
     );
 
-router.route('/crear-pasajero')
-        .post(
-            (req, res) => {
-                crearPasajero(req, res);
-            }
-        );
+router.route('/consultar-pasajeros')
+    .get(
+        (req, res) => {
+            consultarPasajeros(req, res);
+        }
+    );
 
 module.exports = router;

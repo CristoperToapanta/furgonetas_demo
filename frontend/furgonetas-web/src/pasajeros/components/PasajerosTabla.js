@@ -1,10 +1,10 @@
-import initConfig from '../../configs/initConfig'
-import axios from 'axios'
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
+import {consultar_pasajeros} from '../../server/pasajeroApi'
+import { AccionContext } from '../../context/AccionesContext';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -27,21 +27,25 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-
-  const URI = initConfig.host + "/prueba/listado-pasajeros";
   
-
 export default function PasajerosTabla() {
 
-  const [pasajeros, setPasajero] = useState([])
-  useEffect(()=>{
-    obtenerPasajeros()
-  },[])
+  // Importar Contexto y sus variables
+  const { recargarPasajeros } = useContext(AccionContext);
+  const [pasajeros, setPasajeros] = useState([])
 
-  const obtenerPasajeros = async () => {
-    const res = await axios.get(URI);
-    setPasajero(res.data)
-  }
+  useEffect(() => {
+        consultar_pasajeros()
+        .then((res) => {
+            console.log("Lista: ", res.data.lista)
+            setPasajeros(res.data.lista)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+  // Escuchar el cambio del evento de la bandera del contexto
+  // para actualizar la lista
+  }, [recargarPasajeros])
 
   return (
     <TableContainer component={Paper}>

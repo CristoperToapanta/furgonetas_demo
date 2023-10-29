@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const {listarConductor, crear} = require('../controllers/ConductorController');
+const {listarConductor, crear} = require('../controllers/conductorController');
 
-router.route('/listado-conductores')
+router.route('/consultar-pasajeros')
       .get(
         (req, res) => {
             listarConductor(req, res);

@@ -2,21 +2,25 @@ const conductorConsultas = require("../database/consultas/conductorConsultas");
 
 const conductorController = {
     // Método para listar conductores
-    /*listarConductor: async function (req, res) {
-        await conductorConsultas
-            .consultarConductores()
-            .then((msj) => {
-                console.log("Respuesta al listado de conductores: ", msj);
-            })
-            .catch((err) => {
-                console.log("Error en la consulta de listado de conductores: ", err);
+    listarConductor: async function (req, res) {
+        await conductorConsultas.consultarConductores([])
+        .then((resp) => {
+            console.log(resp)
+            return res.status(200).json({
+                    result: true,
+                    code: 200,
+                    mensaje: 'Se han consultado los conductores',
+                    lista: resp
+                });
+        }).catch((err) => {
+            return res.status(400).json({
+                result: false,
+                code: 400,
+                message: "Ha ocurrido un error en la BDD al consultar los conductores" + err
             });
-    },*/
-
-    listarConductor: async function(req, res){
-        let lista = await conductorConsultas.consultarConductores();
-        res.json(lista);
+        })
     },
+
 
     // Método para crear nuevas conductores
     crear: async function (req, res) {

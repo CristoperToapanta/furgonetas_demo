@@ -5,13 +5,18 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import NavigationRouter from './navigation/NavigationRouter';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { AccionesContext } from './context/AccionesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-  <Router>
-    <NavigationRouter />
-  </Router>,
+  // Añadir el Componente Context
+  <AccionesContext>
+    <Router>
+      <NavigationRouter />
+    </Router>
+  </AccionesContext>
+  ,
 
   // <React.StrictMode>
   /* { <App /> } */
