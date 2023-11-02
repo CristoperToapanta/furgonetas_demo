@@ -25,7 +25,6 @@ var pasajeroConsultas = {
         return conexion.any(query);
 
     },
-
 };
 
 module.exports = pasajeroConsultas;

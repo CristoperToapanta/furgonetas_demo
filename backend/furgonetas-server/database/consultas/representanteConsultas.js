@@ -21,6 +21,13 @@ var representanteConsultas = {
 
         return conexion.any(query);
 
+    },
+
+    NombresRepresentantes: function(params){
+
+        let query = `SELECT id_representante,nombre_representante FROM hypermovilidad.tbl_representante ORDER BY id_representante DESC`;
+
+        return conexion.any(query);
     }
 
 }

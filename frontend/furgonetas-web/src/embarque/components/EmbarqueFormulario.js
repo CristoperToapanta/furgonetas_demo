@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
     Button,
     DialogActions,
@@ -11,8 +11,11 @@ import {
     Grid,
     Box,
 } from '@mui/material';
+
 import { insertar_pasajero } from '../../server/pasajeroApi';
 import { AccionContext } from '../../context/AccionesContext';
+
+import { consultar_nombres_representantes } from '../../server/representanteApi';
 
 export default function EmbarqueFormulario({
     handleDialogClose,
@@ -46,19 +49,58 @@ export default function EmbarqueFormulario({
 
     }
 
+    const [representantes, setRepresentantes] = useState([]);
+    /*const [nombresRep, setNombresRep] = useState('');
+    const [idRepresentantes, setIdRepresentantes] = useState('');*/
+
+    useEffect(() => {
+        consultar_nombres_representantes()
+            .then((res) => {
+                console.log("Lista: ", res.data.lista)
+                setRepresentantes(res.data.lista)
+                setIdRepresentante(res.data.lista)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },[])
+    
+
     return (
         <>
             <Grid container spacing={2}>
+                
             <Grid item xs={12}>
-                    <TextField
-                        label="Id Representante"
-                        fullWidth
-                        type="number"
-                        value={idrepresentante}
-                        onChange={(e) => setIdRepresentante(e.target.value)}
-                        margin="normal"
-                    />
+
+                <FormControl
+                    fullWidth
+                    style={{
+                        marginTop: '6px'
+                    }}
+                >
+                <InputLabel sx={{
+                    marginTop: '10px'
+                }}>Representante</InputLabel>
+                <Select
+                    label="Representante"
+                    value={idrepresentante}
+                    onChange={(e) => setIdRepresentante(e.target.value)}
+                    
+                    style={{
+                        marginTop: '10px'
+                    }}
+                >
+                    {representantes.map((representante) =>(
+                        <MenuItem key={representante.id_representante} value={representante.id_representante}>{representante.id_representante}    {representante.nombre_representante}</MenuItem>
+                    ))}
+                </Select>
+                 </FormControl>
+
                 </Grid>
+
+                
+               
+
                 <Grid item xs={6}>
                     <TextField
                         label="Cédula"
@@ -141,13 +183,29 @@ export default function EmbarqueFormulario({
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField
-                        label="Género"
+
+                <FormControl
                         fullWidth
-                        value={genero}
-                        onChange={(e) => setGenero(e.target.value)}
-                        margin="normal"
-                    />
+                        style={{
+                            marginTop: '6px'
+                        }}
+                    >
+                        <InputLabel sx={{
+                            marginTop: '10px'
+                        }}>Género</InputLabel>
+                        <Select
+                            label="genero"
+                            value={genero}
+                            onChange={(e) => setGenero(e.target.value)}
+                            style={{
+                                marginTop: '10px'
+                            }}
+                        >
+                           <MenuItem value={'masculino'}>masculino</MenuItem>
+                           <MenuItem value={'femenino'}>femenino</MenuItem>
+                        </Select>
+                    </FormControl>
+
                 </Grid>
             </Grid>
 

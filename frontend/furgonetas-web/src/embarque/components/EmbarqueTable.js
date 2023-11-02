@@ -56,9 +56,6 @@ export default function EmbarqueTable() {
                         </TableCell>
 
                         <TableCell align='center' >
-                            <Typography fontWeight={'bold'} fontSize={'16px'}> ID </Typography>
-                        </TableCell>
-                        <TableCell align='center' >
                             <Typography fontWeight={'bold'} fontSize={'16px'}> CÉDULA </Typography>
                         </TableCell>
                         <TableCell align='center' >
@@ -89,7 +86,6 @@ export default function EmbarqueTable() {
                                 key={row.nombre_pasajero}
                             >
                                 <TableCell align='center'>{row.nombre_representante}</TableCell>
-                                <TableCell align='center'>{row.id_pasajero}</TableCell>
                                 <TableCell align='center'>{row.cedula_pasajero}</TableCell>
                                 <TableCell align='center'>{row.nombre_pasajero}</TableCell>
                                 <TableCell align='center'>{row.direccion_pasajero}</TableCell>
