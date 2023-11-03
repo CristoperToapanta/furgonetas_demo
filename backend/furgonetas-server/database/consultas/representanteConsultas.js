@@ -8,7 +8,7 @@ var representanteConsultas = {
                     (cedula_representante,nombre_representante,
                     direccion_representante,parentesco_representante)
                     VALUES('${params[0]}','${params[1]}','${params[2]}',
-                    '${params[3]}','${params[4]}')
+                    '${params[3]}')
                     RETURNING id_representante`;
         
         return conexion.any(query);

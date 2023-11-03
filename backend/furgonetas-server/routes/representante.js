@@ -1,5 +1,11 @@
 const router = require('express').Router();
-const {representantesConsulta, representanteNombres} = require('../controllers/representanteController');
+const { insertarRepresentante, representantesConsulta, representanteNombres} = require('../controllers/representanteController');
+
+router.route('/registra-representante')
+    .post((req, res) => {
+        insertarRepresentante(req, res)
+    }
+);
 
 router.route('/consultar-representantes')
     .get((req, res) => {
