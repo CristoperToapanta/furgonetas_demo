@@ -1,5 +1,11 @@
 const router = require('express').Router();
-const {listarConductor, crear} = require('../controllers/conductorController');
+const { insertarConductor, listarConductor} = require('../controllers/ConductorController');
+
+router.route('/insertar-conductor')
+    .post((req, res) => {
+        insertarConductor(req, res)
+    }
+);
 
 router.route('/consultar-pasajeros')
       .get(
@@ -8,11 +14,5 @@ router.route('/consultar-pasajeros')
         }
       );
 
-router.route('/crear-conductor')
-        .post(
-            (req, res) => {
-                crear(req, res);
-            }
-        )
 
 module.exports = router;
