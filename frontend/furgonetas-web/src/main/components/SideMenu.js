@@ -23,9 +23,13 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import { Link } from "react-router-dom";
 import EmbarqueModal from "../../embarque/components/EmbarqueModal";
 
+import FurgonetaModal from '../../furgoneta/components/FurgonetaModal'
+
 export default function SideMenu({ drawerOpen, toggleDrawer }) {
   const [open, setOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const [dialogOpenF, setDialogOpenF] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -41,6 +45,15 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
 
   const handleDialogClose = () => {
     setDialogOpen(false);
+  };
+
+  /* Modal Furgonetas */
+  const handleDialogOpenF = () => {
+    setDialogOpenF(true);
+  };
+
+  const handleDialogCloseF = () => {
+    setDialogOpenF(false);
   };
 
   return (
@@ -129,6 +142,7 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
               sx={{ pl: 4 }}
               component={Link}
               to="furgoneta"
+              onClick={handleDialogOpenF}
             >
               <ListItemIcon>
                 <DirectionsBusIcon
@@ -238,6 +252,14 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
         setDialogOpen={setDialogOpen}
         handleDialogOpen={handleDialogOpen}
         handleDialogClose={handleDialogClose}
+        cerrarSideMenu={cerrarSideMenu}
+      />
+
+      <FurgonetaModal
+        dialogOpen={dialogOpenF}
+        setDialogOpen={setDialogOpenF}
+        handleDialogOpen={handleDialogOpenF}
+        handleDialogClose={handleDialogCloseF}
         cerrarSideMenu={cerrarSideMenu}
       />
     </Drawer>

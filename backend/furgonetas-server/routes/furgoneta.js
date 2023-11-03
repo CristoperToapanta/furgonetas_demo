@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { insertarFurgoneta, furgonetaConsulta } = require('../controllers/furgonetaController');
 
-router.route('/registra-furgoneta')
+router.route('/registrar-furgoneta')
     .post((req, res) => {
         insertarFurgoneta(req, res)
     }
