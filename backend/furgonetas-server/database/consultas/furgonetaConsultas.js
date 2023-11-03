@@ -5,7 +5,7 @@ var furgonetaConsultas = {
     insertarFurgoneta: function(params){
 
         let query = `INSERT INTO hypermovilidad.tbl_furgoneta(placa_furgoneta,estado_furgoneta) 
-                     VALUES('${params[0]}',${params[1]}) 
+                     VALUES('${params[0]}', true) 
                      RETURNING id_furgoneta`;
         
         return conexion.any(query);

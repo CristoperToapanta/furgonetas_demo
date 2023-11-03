@@ -1,5 +1,11 @@
 const router = require('express').Router();
-const { furgonetaConsulta } = require('../controllers/furgonetaController');
+const { insertarFurgoneta, furgonetaConsulta } = require('../controllers/furgonetaController');
+
+router.route('/registra-furgoneta')
+    .post((req, res) => {
+        insertarFurgoneta(req, res)
+    }
+);
 
 router.route('/consultar-furgonetas')
     .get(
