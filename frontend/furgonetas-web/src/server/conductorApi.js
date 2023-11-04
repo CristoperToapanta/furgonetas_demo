@@ -2,7 +2,7 @@ import initConfig from "../configs/initConfig";
 import axios from 'axios';
 
 const CONSULTAR_CONDUCTORES_URL = initConfig.host + "/conductor/consultar-pasajeros";
-const INSERTAR_CONDUCTOR_URL = initConfig.host + "/conductor/crear-conductor";
+const INSERTAR_CONDUCTOR_URL = initConfig.host + "/conductor/registrar-conductor";
 
 
 export function consultar_conductores() {

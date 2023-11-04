@@ -3,45 +3,42 @@ import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import React, { useEffect, useState } from 'react';
 
-import { consultar_conductores } from '../server/conductorApi';
+import { consultar_conductores } from '../../server/conductorApi';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-
-
-export default function ConductorScreen() {
-
-  const [conductores, setConductores] = useState([])
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
   
-  useEffect(() => {
-    consultar_conductores()
-        .then((res) => {
-            console.log("Lista: ", res.data.lista)
-            setConductores(res.data.lista)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-  }, [])
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
+export default function ConductorTable() {
+
+    const [conductores, setConductores] = useState([])
+  
+    useEffect(() => {
+      consultar_conductores()
+          .then((res) => {
+              console.log("Lista: ", res.data.lista)
+              setConductores(res.data.lista)
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+    }, [])
 
   return (
     <TableContainer component={Paper}>
@@ -70,5 +67,5 @@ export default function ConductorScreen() {
       </TableBody>
     </Table>
   </TableContainer>
-  );
+  )
 }
