@@ -1,9 +1,10 @@
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import {consultar_representantes} from '../../server/representanteApi';
+import { AccionContext } from '../../context/AccionesContext';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -27,6 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 export default function RepresentantesTable() {
 
+    const { recargarRepresentante } = useContext(AccionContext)
     const [representantes, setRepresentantes] = useState([])
 
     useEffect(() => {
@@ -38,7 +40,7 @@ export default function RepresentantesTable() {
         .catch((err) => {
             console.log(err)
         })
-    },[])
+    },[recargarRepresentante])
 
   return (
     <TableContainer component={Paper}>

@@ -23,13 +23,17 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import { Link } from "react-router-dom";
 import EmbarqueModal from "../../embarque/components/EmbarqueModal";
 
-import FurgonetaModal from '../../furgoneta/components/FurgonetaModal'
+import FurgonetaModal from '../../furgoneta/components/FurgonetaModal';
+
+import RepresentanteModal from '../../representante/components/RepresentantesModal'
 
 export default function SideMenu({ drawerOpen, toggleDrawer }) {
   const [open, setOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
   const [dialogOpenF, setDialogOpenF] = React.useState(false);
+
+  const [dialogOpenR, setDialogOpenR] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -54,6 +58,15 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
 
   const handleDialogCloseF = () => {
     setDialogOpenF(false);
+  };
+
+  /* Modal Representante */
+  const handleDialogOpenR = () => {
+    setDialogOpenR(true);
+  };
+
+  const handleDialogCloseR = () => {
+    setDialogOpenR(false);
   };
 
   return (
@@ -167,6 +180,7 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
               sx={{ pl: 4 }}
               component={Link}
               to="representante"
+              onClick={handleDialogOpenR}
             >
               <ListItemIcon>
                 <FamilyRestroomIcon
@@ -261,6 +275,14 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
         handleDialogOpen={handleDialogOpenF}
         handleDialogClose={handleDialogCloseF}
         cerrarSideMenu={cerrarSideMenu}
+      />
+
+      <RepresentanteModal
+        dialogOpen={dialogOpenR}
+        setDialogOpen={setDialogOpenR}
+        handleDialogOpen={handleDialogOpenR}
+        handleDialogClose={handleDialogCloseR} 
+        cerrarSideMenu={cerrarSideMenu}        
       />
     </Drawer>
   );
