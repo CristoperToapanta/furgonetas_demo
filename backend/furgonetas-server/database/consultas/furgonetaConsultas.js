@@ -17,6 +17,14 @@ var furgonetaConsultas = {
         let query = `SELECT * FROM hypermovilidad.tbl_furgoneta ORDER BY id_furgoneta ASC`;
 
         return conexion.any(query);
+    },
+
+    placasFurgonetas: function(){
+
+        let query = `SELECT id_furgoneta,placa_furgoneta FROM hypermovilidad.tbl_furgoneta ORDER BY id_furgoneta DESC`;
+
+        return conexion.any(query);
+
     }
 
 }

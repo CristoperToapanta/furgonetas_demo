@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { insertarFurgoneta, furgonetaConsulta } = require('../controllers/furgonetaController');
+const { insertarFurgoneta, furgonetaConsulta, furgonetaPlacas } = require('../controllers/furgonetaController');
 
 router.route('/registrar-furgoneta')
     .post((req, res) => {
@@ -12,7 +12,13 @@ router.route('/consultar-furgonetas')
         (req, res) => {
             furgonetaConsulta(req, res)
         }
-    );
+);
+
+router.route('/placas-furgonetas')
+    .get((req, res) => {
+        furgonetaPlacas(req, res)      
+    }
+);
 
 
 module.exports = router;
