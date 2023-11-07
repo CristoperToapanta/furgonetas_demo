@@ -21,11 +21,15 @@ import GroupsIcon from "@mui/icons-material/Groups";
 
 
 import { Link } from "react-router-dom";
+
 import EmbarqueModal from "../../embarque/components/EmbarqueModal";
 
 import FurgonetaModal from '../../furgoneta/components/FurgonetaModal';
 
-import RepresentanteModal from '../../representante/components/RepresentantesModal'
+import RepresentanteModal from '../../representante/components/RepresentantesModal';
+
+import ConductorModal from "../../conductor/components/ConductorModal";
+
 
 export default function SideMenu({ drawerOpen, toggleDrawer }) {
   const [open, setOpen] = React.useState(false);
@@ -34,6 +38,8 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
   const [dialogOpenF, setDialogOpenF] = React.useState(false);
 
   const [dialogOpenR, setDialogOpenR] = React.useState(false);
+
+  const [dialogOpenC, setDialogOpenC] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -67,6 +73,15 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
 
   const handleDialogCloseR = () => {
     setDialogOpenR(false);
+  };
+
+  /* Modal Conductor */
+  const handleDialogOpenC = () => {
+    setDialogOpenC(true);
+  };
+
+  const handleDialogCloseC = () => {
+    setDialogOpenC(false);
   };
 
   return (
@@ -131,6 +146,7 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
               sx={{ pl: 4 }}
               component={Link}
               to="conductor"
+              onClick={handleDialogOpenC}
             >
               <ListItemIcon>
                 <ContactsIcon
@@ -283,6 +299,14 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
         handleDialogOpen={handleDialogOpenR}
         handleDialogClose={handleDialogCloseR} 
         cerrarSideMenu={cerrarSideMenu}        
+      />
+
+      <ConductorModal
+        dialogOpen={dialogOpenC}
+        setDialogOpen={setDialogOpenC}
+        handleDialogOpen={handleDialogOpenC}
+        handleDialogClose={handleDialogCloseC}
+        cerrarSideMenu={cerrarSideMenu} 
       />
     </Drawer>
   );

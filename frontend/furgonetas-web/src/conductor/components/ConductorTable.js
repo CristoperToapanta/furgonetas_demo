@@ -1,9 +1,10 @@
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { consultar_conductores } from '../../server/conductorApi';
+import { AccionContext } from '../../context/AccionesContext';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -27,6 +28,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 export default function ConductorTable() {
 
+    // Importar Contexto y sus variables
+    const {recargarConductor} = useContext(AccionContext)
     const [conductores, setConductores] = useState([])
   
     useEffect(() => {
@@ -38,7 +41,7 @@ export default function ConductorTable() {
           .catch((err) => {
               console.log(err)
           })
-    }, [])
+    },[recargarConductor])
 
   return (
     <TableContainer component={Paper}>

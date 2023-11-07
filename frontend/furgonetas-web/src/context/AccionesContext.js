@@ -13,6 +13,8 @@ export const AccionesContext = ({ children }) => {
 
     const [recargarRepresentante, setRecargarRepresentante] = useState(false);
 
+    const [recargarConductor, setRecargarConductor] = useState(false);
+
     // Bandera del Contexto
     const accionPasajeros = () => {
         setRecargarPasajeros(!recargarPasajeros);
@@ -26,6 +28,10 @@ export const AccionesContext = ({ children }) => {
         setRecargarRepresentante(!recargarRepresentante);
     }
 
+    const accionConductor  =() => {
+        setRecargarConductor(!recargarConductor);
+    }
+
     // Componente Provider
     return (
         <AccionContext.Provider
@@ -35,7 +41,9 @@ export const AccionesContext = ({ children }) => {
                 recargarFurgonetas,
                 accionFurgonetas,
                 recargarRepresentante,
-                accionRepresentante
+                accionRepresentante,
+                recargarConductor,
+                accionConductor
             }}
         >
             {children}
