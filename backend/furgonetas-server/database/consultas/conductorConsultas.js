@@ -24,6 +24,13 @@ var conductorConsultas = {
 
     },
 
+
+    NombreConductores: function(){
+        
+        let query = `SELECT id_conductor,nombre_conductor FROM hypermovilidad.tbl_conductor ORDER BY id_conductor ASC`;
+
+        return conexion.any(query);
+    }
    
 
 };

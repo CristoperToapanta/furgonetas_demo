@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { insertarConductor, listarConductor} = require('../controllers/ConductorController');
+const { insertarConductor, listarConductor, conductoresNombres} = require('../controllers/ConductorController');
 
 router.route('/registrar-conductor')
     .post((req, res) => {
@@ -8,11 +8,16 @@ router.route('/registrar-conductor')
 );
 
 router.route('/consultar-pasajeros')
-      .get(
-        (req, res) => {
-            listarConductor(req, res);
-        }
-      );
+    .get((req, res) => {
+        listarConductor(req, res);
+    }
+);
+
+router.route('/nombres-conductores')
+    .get((req, res) => {
+        conductoresNombres(req, res)
+    }
+);
 
 
 module.exports = router;
