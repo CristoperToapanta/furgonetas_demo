@@ -25,6 +25,14 @@ var pasajeroConsultas = {
         return conexion.any(query);
 
     },
+
+    nombresPasajeros: function(){
+
+        let query = `SELECT id_pasajero,nombre_pasajero FROM hypermovilidad.tbl_pasajero ORDER BY id_pasajero ASC`;
+
+        return conexion.any(query);
+
+    }
 };
 
 module.exports = pasajeroConsultas;
