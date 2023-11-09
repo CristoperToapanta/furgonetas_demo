@@ -15,6 +15,8 @@ export const AccionesContext = ({ children }) => {
 
     const [recargarConductor, setRecargarConductor] = useState(false);
 
+    const [recargarRecorrido, setRecargarRecorrido] = useState(false);
+
     // Bandera del Contexto
     const accionPasajeros = () => {
         setRecargarPasajeros(!recargarPasajeros);
@@ -28,8 +30,12 @@ export const AccionesContext = ({ children }) => {
         setRecargarRepresentante(!recargarRepresentante);
     }
 
-    const accionConductor  =() => {
+    const accionConductor = () => {
         setRecargarConductor(!recargarConductor);
+    }
+
+    const accionRecorrido = () => {
+        setRecargarRecorrido(!recargarRecorrido);
     }
 
     // Componente Provider
@@ -43,7 +49,9 @@ export const AccionesContext = ({ children }) => {
                 recargarRepresentante,
                 accionRepresentante,
                 recargarConductor,
-                accionConductor
+                accionConductor,
+                recargarRecorrido,
+                accionRecorrido
             }}
         >
             {children}

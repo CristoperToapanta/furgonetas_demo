@@ -30,6 +30,8 @@ import RepresentanteModal from '../../representante/components/RepresentantesMod
 
 import ConductorModal from "../../conductor/components/ConductorModal";
 
+import RecorridoModal from "../../recorrido/components/RecorridoModal";
+
 
 export default function SideMenu({ drawerOpen, toggleDrawer }) {
   const [open, setOpen] = React.useState(false);
@@ -40,6 +42,8 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
   const [dialogOpenR, setDialogOpenR] = React.useState(false);
 
   const [dialogOpenC, setDialogOpenC] = React.useState(false);
+
+  const [dialogOpenRec, setDialogOpenRec] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -83,6 +87,15 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
   const handleDialogCloseC = () => {
     setDialogOpenC(false);
   };
+
+  /* Modal de Recorrido */
+  const handleDialogOpenRec = () => {
+    setDialogOpenRec(true);
+  }
+
+  const handleDialogCloseRec = () => {
+    setDialogOpenRec(false);
+  }
 
   return (
     <Drawer
@@ -242,6 +255,7 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
               sx={{ pl: 4 }}
               component={Link}
               to="recorrido"
+              onClick={handleDialogOpenRec}
             >
               <ListItemIcon>
                 <MyLocationIcon
@@ -306,6 +320,14 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
         setDialogOpen={setDialogOpenC}
         handleDialogOpen={handleDialogOpenC}
         handleDialogClose={handleDialogCloseC}
+        cerrarSideMenu={cerrarSideMenu} 
+      />
+
+      <RecorridoModal
+        dialogOpen={dialogOpenRec}
+        setDialogOpen={setDialogOpenRec}
+        handleDialogOpen={handleDialogOpenRec}
+        handleDialogClose={handleDialogCloseRec}
         cerrarSideMenu={cerrarSideMenu} 
       />
     </Drawer>
