@@ -272,7 +272,12 @@ export default function SideMenu({ drawerOpen, toggleDrawer }) {
               </ListItemText>
             </ListItem>
 
-            <ListItem button sx={{ pl: 4 }}>
+            <ListItem 
+              button 
+              sx={{ pl: 4 }}
+              component={Link}
+              to="listado"
+            >
               <ListItemIcon>
                 <GroupsIcon
                   style={{

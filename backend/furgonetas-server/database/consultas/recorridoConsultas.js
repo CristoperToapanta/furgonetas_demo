@@ -26,6 +26,20 @@ var recorridoConsultas = {
 
     return conexion.any(query);
   },
+
+  tomarAsistencia: function(params){
+    let query = `SELECT tp.nombre_pasajero,
+                        tr.asistencia 
+                 FROM hypermovilidad.tbl_recorrido tr 
+                 INNER JOIN hypermovilidad.tbl_conductor tc
+                 ON tr.id_conductor=tc.id_conductor
+                 INNER JOIN hypermovilidad.tbl_pasajero tp
+                 ON tr.id_pasajero=tp.id_pasajero
+                 WHERE tc.id_conductor='${params[0]}'`;
+
+    return conexion.any(query);
+  }
+
 };
 
 module.exports = recorridoConsultas;

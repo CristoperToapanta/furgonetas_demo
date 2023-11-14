@@ -7,6 +7,7 @@ import FurgonetaScreen from '../furgoneta/FurgonetaScreen';
 import RecorridoScreen from '../recorrido/RecorridoScreen';
 import RepresentantesScreen from '../representante/RepresentantesScreen';
 import ConductoresScreen from '../conductor/ConductoresScreen';
+import ListadoScreen from '../embarque/ListadoScreen';
 
 export default function NavigationRouter() {
 
@@ -18,6 +19,7 @@ export default function NavigationRouter() {
         <Route path="/representante" element={<RepresentantesScreen/>}/>
         <Route path="/furgoneta" element={<FurgonetaScreen/>}/>
         <Route path="/recorrido" element={<RecorridoScreen/>}/>
+        <Route path='/listado' element={<ListadoScreen/>}/>
       </Route>
     </Routes>
   );
