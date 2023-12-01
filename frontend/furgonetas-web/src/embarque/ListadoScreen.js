@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState }  from 'react';
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 
 import { nombres_conductor } from '../server/conductorApi';
@@ -48,15 +49,20 @@ export default function ListadoScreen() {
     <Table sx={{ minWidth: 700 }} aria-label="customized table">
       <TableHead>
         <TableRow>   
-          <StyledTableCell align="center">Id Conductor</StyledTableCell>
           <StyledTableCell align="center">Nombre Conductor</StyledTableCell>
+          <StyledTableCell align="center">Listado</StyledTableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {conductores.map((conductor) => (
           <StyledTableRow key={conductor.id_conductor}>
-            <StyledTableCell align="center">{conductor.id_conductor}</StyledTableCell>
             <StyledTableCell align="center">{conductor.nombre_conductor}</StyledTableCell>
+            
+            <StyledTableCell align="center">
+              <Button variant="outlined" color="warning">
+                Ver Listado
+              </Button>  
+            </StyledTableCell>     
           </StyledTableRow>
         ))}
       </TableBody>
