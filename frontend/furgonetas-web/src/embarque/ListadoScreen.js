@@ -32,7 +32,7 @@ export default function ListadoScreen() {
     // Importar Contexto y sus variables
     const {recargarConductor} = useContext(AccionContext)
     const [conductores, setConductores] = useState([])
-  
+
     useEffect(() => {
       nombres_conductor()
           .then((res) => {
@@ -50,7 +50,8 @@ export default function ListadoScreen() {
       <TableHead>
         <TableRow>   
           <StyledTableCell align="center">Nombre Conductor</StyledTableCell>
-          <StyledTableCell align="center">Listado</StyledTableCell>
+          <StyledTableCell align="center">Embarque</StyledTableCell>
+          <StyledTableCell align="center">Desmbarque</StyledTableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -59,10 +60,15 @@ export default function ListadoScreen() {
             <StyledTableCell align="center">{conductor.nombre_conductor}</StyledTableCell>
             
             <StyledTableCell align="center">
-              <Button variant="outlined" color="warning">
-                Ver Listado
-              </Button>  
-            </StyledTableCell>     
+              <Button variant="outlined" color="primary">
+                Listado de Embarque
+              </Button> 
+            </StyledTableCell>
+            <StyledTableCell align="center">
+              <Button variant="outlined" color="secondary">
+                Listado de DesEmbarque
+              </Button> 
+            </StyledTableCell>      
           </StyledTableRow>
         ))}
       </TableBody>
