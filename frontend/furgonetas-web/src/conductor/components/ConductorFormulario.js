@@ -18,7 +18,6 @@ import { AccionContext } from '../../context/AccionesContext';
 import { consultar_furgonetas } from '../../server/furgonetaApi';
 
 
-
 export default function ConductorFormulario({handleDialogClose,cerrarSideMenu}) {
 
     const [idfurgoneta, setIdFurgoneta] = useState('');
@@ -31,6 +30,19 @@ export default function ConductorFormulario({handleDialogClose,cerrarSideMenu}) 
 
      // Llamar al contexto
      const { accionConductor } = useContext(AccionContext);
+
+     /* validación de los textfiels */
+     const [errorCedula, setErrorCedula] = useState(false);
+     const [errorNombre, setErrorNombre] = useState(false);
+     const [errorApellido, setErrorApellido] = useState(false);
+     const [errorLicencia, setErrorLicencia] = useState(false);
+     const [errorDireccion, setErrorDireccion] = useState(false);
+
+     const [msgErrorCedula, setMsgErrorCedula] = useState('');
+     const [msgErrorNombre, setMsgErrorNombre] = useState('');
+     const [msgErrorApellido, setMsgErrorApellido] = useState('');
+     const [msgErrorLicencia, setMsgErrorLicencia] = useState('');
+     const [msgErrorDireccion, setMsgErrorDireccion] = useState('');
 
      const handleIngresarConductor = (data) => {
         insertar_conductor(data)
@@ -88,36 +100,69 @@ export default function ConductorFormulario({handleDialogClose,cerrarSideMenu}) 
 
                 </Grid>
 
-                
-               
 
                 <Grid item xs={6}>
                     <TextField
+                        error={errorCedula}
                         label="Cédula"
                         fullWidth
-                        type="number"
                         value={cedula}
-                        onChange={(e) => setCedula(e.target.value)}
+                        onChange={(e) => {
+                            setCedula(e.target.value)
+                            if(cedula.length >= 10){
+                                setErrorCedula(true);
+                                setMsgErrorCedula("La cédula no debe ser mayor a 10 Digitos")
+                            }else if(isNaN(cedula)){
+                                setErrorCedula(true);
+                                setMsgErrorCedula("Debe Ingresar solo Digitos");
+                            }else{
+                                setErrorCedula(false);
+                                setMsgErrorCedula("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorCedula}
                     />
                 </Grid>
                 
                 <Grid item xs={6}>
                     <TextField
+                        error={errorNombre}
                         label="Nombre"
                         fullWidth
                         value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
+                        onChange={(e) => {
+                            setNombre(e.target.value)
+                            if(!isNaN(nombre)){
+                                setErrorNombre(true);
+                                setMsgErrorNombre("Debe ingresar solo letras");
+                            }else{
+                                setErrorNombre(false);
+                                setMsgErrorNombre("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorNombre}
                     />
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
+                        error={errorApellido}
                         label="Apellido"
                         fullWidth
                         value={apellido}
-                        onChange={(e) => setApellido(e.target.value)}
+                        onChange={(e) => {
+                            setApellido(e.target.value)
+                            if(!isNaN(apellido)){
+                                setErrorApellido(true);
+                                setMsgErrorApellido("Debe ingresar solo letras");
+                            }else{
+                                setErrorApellido(false);
+                                setMsgErrorApellido("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorApellido}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -146,22 +191,45 @@ export default function ConductorFormulario({handleDialogClose,cerrarSideMenu}) 
                         </Select>
                     </FormControl>
                 </Grid>
+
                 <Grid item xs={6}>
                     <TextField
+                        error={errorLicencia}
                         label="Tipo de Licencia"
                         fullWidth
                         value={licencia}
-                        onChange={(e) => setLicencia(e.target.value)}
+                        onChange={(e) => {
+                            setLicencia(e.target.value)
+                            if(!isNaN(licencia)){
+                                setErrorLicencia(true);
+                                setMsgErrorLicencia("Debe ingresar solo letras")
+                            }else{
+                                setErrorLicencia(false);
+                                setMsgErrorLicencia("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorLicencia}
                     />
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
+                        error={errorDireccion}
                         label="Dirección"
                         fullWidth
                         value={direccion}
-                        onChange={(e) => setDireccion(e.target.value)}
+                        onChange={(e) => {
+                            setDireccion(e.target.value)
+                            if(!isNaN(direccion)){
+                                setErrorDireccion(true);
+                                setMsgErrorDireccion("Debe ingresar solo letras")
+                            }else{
+                                setErrorDireccion(false);
+                                setMsgErrorDireccion("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorDireccion}
                     />
                 </Grid>
               
