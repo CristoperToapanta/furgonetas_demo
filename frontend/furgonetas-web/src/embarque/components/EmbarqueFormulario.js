@@ -34,6 +34,21 @@ export default function EmbarqueFormulario({
     // Llamar al contexto
     const { accionPasajeros } = useContext( AccionContext );
 
+        /* Validando los textfiels */
+        const [errorCedula, setErrorCedula] = useState(false);
+        const [errorNombre, setErrorNombre] = useState(false);
+        const [errorApellido, setErrorApellido] = useState(false);
+        const [errorDireccion, setErrorDireccion] = useState(false);
+        const [errorInstitucion, setErrorInstitucion] = useState(false);
+        const [errorDireccionInstitucion, setErrorDireccionInstitucion] = useState(false);
+    
+        const [msgErrorCedula, setMsgErrorCedula] = useState('');
+        const [msgErrorNombre, setMsgErrorNombre] = useState('');
+        const [msgErrorApellido, setMsgErrorApellido] = useState('');
+        const [msgErrorDireccion, setMsgErrorDireccion] = useState('');
+        const [msgErrorInstitucion, setMsgErrorInstitucion] = useState('');
+        const [msgErrorDireccionInstitucion, setMsgErrorDireccionInstitucion] = useState('');
+
     const handleIngresarPasajero = (data) => {
 
         insertar_pasajero(data)
@@ -98,19 +113,30 @@ export default function EmbarqueFormulario({
 
                 </Grid>
 
-                
-               
-
                 <Grid item xs={6}>
                     <TextField
+                        error={errorCedula}
                         label="Cédula"
                         fullWidth
-                        type="number"
                         value={cedula}
-                        onChange={(e) => setCedula(e.target.value)}
+                        onChange={(e) => {
+                            setCedula(e.target.value)
+                            if(cedula.length >= 10){
+                                setErrorCedula(true);
+                                setMsgErrorCedula("La cédula no debe ser mayor a 10 Digitos");
+                            }else if(isNaN(cedula)){
+                                setErrorCedula(true);
+                                setMsgErrorCedula("Debe Ingresar solo Digitos");
+                            }else{
+                                setErrorCedula(false);
+                                setMsgErrorCedula("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorCedula}
                     />
                 </Grid>
+
                 <Grid item xs={6}>
                     <FormControl
                         fullWidth
@@ -137,49 +163,109 @@ export default function EmbarqueFormulario({
                         </Select>
                     </FormControl>
                 </Grid>
+
                 <Grid item xs={6}>
                     <TextField
+                        error={errorNombre}
                         label="Nombre"
                         fullWidth
                         value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
+                        onChange={(e) => {
+                            setNombre(e.target.value)
+                            if(!isNaN(nombre)){
+                                setErrorNombre(true);
+                                setMsgErrorNombre("Debe ingresar solo letras");
+                            }else{
+                                setErrorNombre(false);
+                                setMsgErrorNombre("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorNombre}
                     />
                 </Grid>
+
                 <Grid item xs={6}>
                     <TextField
+                        error={errorApellido}
                         label="Apellido"
                         fullWidth
                         value={apellido}
-                        onChange={(e) => setApellido(e.target.value)}
+                        onChange={(e) => {
+                            setApellido(e.target.value)
+                            if(!isNaN(apellido)){
+                                setErrorApellido(true);
+                                setMsgErrorApellido("Debe ingresar solo letras");
+                            }else{
+                                setErrorApellido(false);
+                                setMsgErrorApellido("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorApellido}
                     />
                 </Grid>
+
                 <Grid item xs={6}>
                     <TextField
+                        error={errorDireccion}
                         label="Dirección"
                         fullWidth
                         value={direccion}
-                        onChange={(e) => setDireccion(e.target.value)}
+                        onChange={(e) => {
+                            setDireccion(e.target.value)
+                            if(!isNaN(direccion)){
+                                setErrorDireccion(true);
+                                setMsgErrorDireccion("Debe ingresar solo letras");
+                            }else{
+                                setErrorDireccion(false);
+                                setMsgErrorDireccion("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorDireccion}
                     />
                 </Grid>
+
                 <Grid item xs={6}>
                     <TextField
+                        error={errorInstitucion}
                         label="Institución"
                         fullWidth
                         value={institucionEducativa}
-                        onChange={(e) => setInstitucionEducativa(e.target.value)}
+                        onChange={(e) => {
+                            setInstitucionEducativa(e.target.value)
+                            if(!isNaN(institucionEducativa)){
+                                setErrorInstitucion(true);
+                                setMsgErrorInstitucion("Debe Ingresar solo letras");
+                            }else{
+                                setErrorInstitucion(false);
+                                setMsgErrorInstitucion("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorInstitucion}
                     />
                 </Grid>
+
                 <Grid item xs={6}>
                     <TextField
+                         error={errorDireccionInstitucion}
                         label="Direccion Institucion"
                         fullWidth
                         value={direccionInstitucion}
-                        onChange={(e) => setDireccionInstitucion(e.target.value)}
+                        onChange={(e) => {
+                            setDireccionInstitucion(e.target.value)
+                            if(!isNaN(direccionInstitucion)){
+                                setErrorDireccionInstitucion(true);
+                                setMsgErrorDireccionInstitucion("Debe Ingresar solo letras");
+                            }else{
+                                setErrorDireccionInstitucion(false);
+                                setMsgErrorDireccionInstitucion("");
+                            }
+                        }}
                         margin="normal"
+                        helperText={msgErrorDireccionInstitucion}
                     />
                 </Grid>
                 <Grid item xs={6}>
