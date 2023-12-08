@@ -30,6 +30,12 @@ export default function RecorridoFormulario({handleDialogClose,cerrarSideMenu}) 
   // Llamar al contexto
   const { accionRecorrido } = useContext(AccionContext);
 
+   /* validacion de los textfields */
+   const [errorTipoRecorrido, setTipoErrorRecorrido] = useState(false);
+
+   const [msgErrorTipoRecorrido, setMsgTipoRecorrido] = useState('');
+ 
+
   const handleIngresarRecorrido = (data) => {
     insertar_recorridos(data)
       .then((res) => {
@@ -160,11 +166,22 @@ export default function RecorridoFormulario({handleDialogClose,cerrarSideMenu}) 
         
         <Grid item xs={12}>
             <TextField
+                error={errorTipoRecorrido}
                 label="Tipo Recorrido"
                 fullWidth
                 value={tiporecorrido}
-                onChange={(e) => setTiporecorrrido(e.target.value)}
+                onChange={(e) => {
+                    setTiporecorrrido(e.target.value)
+                    if(!isNaN(tiporecorrido)){
+                        setTipoErrorRecorrido(true);
+                        setMsgTipoRecorrido("Debe ingresar solo letras");
+                    }else{
+                        setTipoErrorRecorrido(false);
+                        setMsgTipoRecorrido("");
+                    }
+                }}
                 margin="normal"
+                helperText={msgErrorTipoRecorrido}
             />
         </Grid>    
     </Grid>

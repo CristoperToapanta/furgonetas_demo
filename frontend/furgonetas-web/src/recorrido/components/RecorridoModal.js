@@ -25,7 +25,7 @@ export default function RecorridoModal({ dialogOpen,handleDialogClose,cerrarSide
                    fontSize={20}
                    fontWeight={'bold'}
                 >
-                    Embarque de Pasajeros
+                    Recorrido de Pasajeros
                 </Typography>
             </DialogTitle>
 
