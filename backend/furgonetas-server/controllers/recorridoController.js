@@ -74,6 +74,78 @@ const recorridoController = {
         });
       });
   },
+
+  edicionRecorrido: async function(req, res){
+    await recorridoConsultas.EditarRecorrido([
+        req.params.id_recorrido
+    ])
+    .then((resp) => {
+      console.log("Editado del recorrido: ", resp);
+      return res.status(200).json({
+        result: true,
+        code: 200,
+        mensaje: "Datos a editar del recorrido",
+        lista: resp,
+      })
+    })
+    .catch((err) => {
+      return res.status(400).json({
+        result: false,
+        code: 400,
+        message:
+          "Ha ocurrido un error en la BDD al obtener los datos para editar el recorrido: " + err,
+      });
+    })
+  },
+
+  actualizacionRecorrido: async function(req, res){
+    await recorridoConsultas.ActualizarRecorrido([
+        req.body.id_conductor,
+        req.body.id_pasajero,
+        req.body.id_furgoneta,
+        req.body.tipo_recorrido,
+        req.body.id_recorrido
+    ])
+    .then((resp) => {
+      console.log("Actualización del recorrido: ", resp);
+      return res.status(200).json({
+        result: true,
+        code: 200,
+        mensaje: "Datos actualizados del recorrido",
+        lista: resp,
+      })
+    })
+    .catch((err) => {
+      return res.status(400).json({
+        result: false,
+        code: 400,
+        message:
+          "Ha ocurrido un error en la BDD al actualizar los datos del recorrido: " + err,
+      });
+    })
+  },
+
+  eliminacionRecorrido: async function(req, res){
+    await recorridoConsultas.EliminarRecorrido([
+      req.params.id_recorrido
+    ])
+    .then((resp) => {
+      console.log("Eliminado el recorrido: ", resp);
+      return res.status(200).json({
+        result: true,
+        code: 200,
+        mensaje: "Se ha eliminado el recorrido",
+      })
+    })
+    .catch((err) => {
+      return res.status(400).json({
+        result: false,
+        code: 400,
+        message:
+          "Ha ocurrido un error en la BDD al eliminar el recorrido: " + err,
+      });
+    })
+  }
 };
 
 module.exports = recorridoController;

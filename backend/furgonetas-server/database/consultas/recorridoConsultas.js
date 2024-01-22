@@ -3,9 +3,10 @@ const conexion = require("../conexion");
 var recorridoConsultas = {
   insertarRecorrido: function (params) {
     let query = `INSERT INTO hypermovilidad.tbl_recorrido
-                     (id_conductor,id_pasajero,id_furgoneta,tipo_recorrido)
+                     (id_conductor,id_pasajero,id_furgoneta,
+                      tipo_recorrido,estado_recorrido)
                      VALUES('${params[0]}','${params[1]}','${params[2]}',
-                     '${params[3]}') RETURNING id_recorrido`;
+                     '${params[3]}',true) RETURNING id_recorrido`;
 
     return conexion.any(query);
   },
@@ -38,7 +39,37 @@ var recorridoConsultas = {
                  WHERE tc.id_conductor='${params[0]}'`;
 
     return conexion.any(query);
-  }
+  },
+
+  EditarRecorrido: function(params){
+    let query = `SELECT id_conductor,
+                        id_pasajero,
+                        id_furgoneta,
+                        tipo_recorrido
+                 FROM hypermovilidad.tbl_recorrido
+                 WHERE id_recorrido='${params[0]}'`;
+                        
+    return conexion.any(query);
+},
+
+ActualizarRecorrido: function(params){
+  let query = `UPDATE hypermovilidad.tbl_recorrido
+               SET id_conductor='${params[0]}',
+                   id_pasajero='${params[1]}',
+                   id_furgoneta='${params[2]}',
+                   tipo_recorrido='${params[3]}'
+               WHERE id_recorrido='${params[4]}'`;
+      
+  return conexion.any(query);
+},
+
+  EliminarRecorrido: function(params){
+    let query = `UPDATE hypermovilidad.tbl_recorrido
+                 SET estado_recorrido='false'
+                 WHERE id_recorrido='${params[0]}'`;
+    
+    return conexion.any(query);
+}
 
 };
 
