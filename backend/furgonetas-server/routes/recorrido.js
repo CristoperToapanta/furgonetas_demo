@@ -8,32 +8,32 @@ router.route('/registrar-recorrido')
 );
 
 router.route('/consultar-recorridos')
-    .get(
+    .post(
         (req, res) =>{
             recorridoConsulta(req, res);
         }
 );
 
 router.route('/asistencia/:id')
-    .get((req, res) => {
+    .post((req, res) => {
         asistencia(req, res);
     }
 );
 
-router.route('/editar-recorrido/:id_recorrido')
+/*router.route('/editar-recorrido/:id_recorrido')
     .get((req, res) => {
         edicionRecorrido(req, res);
     }
-);
+);*/
 
 router.route('/actualizar-recorrido')
-    .put((req, res) => {
+    .post((req, res) => {
         actualizacionRecorrido(req, res);
     }
 );
 
-router.route('/eliminar-recorrido/:id_recorrido')
-    .delete((req, res) => {
+router.route('/eliminar-recorrido')
+    .post((req, res) => {
         eliminacionRecorrido(req, res);
     }
 );

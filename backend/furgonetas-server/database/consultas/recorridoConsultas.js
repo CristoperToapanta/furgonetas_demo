@@ -41,7 +41,7 @@ var recorridoConsultas = {
     return conexion.any(query);
   },
 
-  EditarRecorrido: function(params){
+  /*EditarRecorrido: function(params){
     let query = `SELECT id_conductor,
                         id_pasajero,
                         id_furgoneta,
@@ -50,7 +50,7 @@ var recorridoConsultas = {
                  WHERE id_recorrido='${params[0]}'`;
                         
     return conexion.any(query);
-},
+},*/
 
 ActualizarRecorrido: function(params){
   let query = `UPDATE hypermovilidad.tbl_recorrido
@@ -65,7 +65,7 @@ ActualizarRecorrido: function(params){
 
   EliminarRecorrido: function(params){
     let query = `UPDATE hypermovilidad.tbl_recorrido
-                 SET estado_recorrido='false'
+                 SET estado_recorrido=false
                  WHERE id_recorrido='${params[0]}'`;
     
     return conexion.any(query);

@@ -8,31 +8,31 @@ router.route('/registrar-pasajero')
     );
 
 router.route('/consultar-pasajeros')
-    .get((req, res) => {
+    .post((req, res) => {
             consultarPasajeros(req, res);
         }
     );
 
 router.route('/nombres-pasajeros')
-    .get((req, res) => {
+    .post((req, res) => {
             pasajerosNombres(req, res);
         }
     );
 
-router.route('/editar-pasajero/:id_pasajero')
+/*router.route('/editar-pasajero/:id_pasajero')
     .get((req, res) => {
             edicionPasajero(req, res);
         }
-    );
+    );*/
 
 router.route('/actualizar-pasajero')
-    .put((req, res) => {
+    .post((req, res) => {
             actualizacionPasajero(req, res);
         }
     );
 
-router.route('/eliminar-pasajero/:id_pasajero')
-    .delete((req, res) => {
+router.route('/eliminar-pasajero')
+    .post((req, res) => {
             eliminacionPasajero(req, res);
         }
     );

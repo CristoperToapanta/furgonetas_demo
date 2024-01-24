@@ -2,9 +2,14 @@ import { Table, TableBody, TableContainer, TableHead, TableRow, Paper } from '@m
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import React, { useContext, useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 import {consultar_representantes} from '../../server/representanteApi';
+//import {eliminar_representante} from '../../server/representanteApi';
 import { AccionContext } from '../../context/AccionesContext';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -31,6 +36,8 @@ export default function RepresentantesTable() {
     const { recargarRepresentante } = useContext(AccionContext)
     const [representantes, setRepresentantes] = useState([])
 
+    const { eliminarRepresentante } = useContext(AccionContext);
+
     useEffect(() => {
       consultar_representantes()
           .then((res) => {
@@ -42,6 +49,10 @@ export default function RepresentantesTable() {
         })
     },[recargarRepresentante])
 
+    const hadleEliminar = (id) => {
+      eliminarRepresentante(id);
+    }
+
   return (
     <TableContainer component={Paper}>
     <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -52,6 +63,7 @@ export default function RepresentantesTable() {
           <StyledTableCell align="center">NOMBRES</StyledTableCell>
           <StyledTableCell align="center">DIRECCION</StyledTableCell>
           <StyledTableCell align="center">PARENTESCO</StyledTableCell>
+          <StyledTableCell align="center">ACCIONES</StyledTableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -62,6 +74,14 @@ export default function RepresentantesTable() {
             <StyledTableCell align="center">{representante.nombre_representante}</StyledTableCell>
             <StyledTableCell align="center">{representante.direccion_representante}</StyledTableCell>
             <StyledTableCell align="center">{representante.parentesco_representante}</StyledTableCell>
+            <StyledTableCell align="center">
+              <Button variant="outlined" color="info">
+                <EditNoteIcon/>
+              </Button>
+              <Button variant="outlined" color="error" onClick={() => hadleEliminar(representante._id_representante)}>
+                <DeleteIcon/>
+              </Button>
+            </StyledTableCell>
           </StyledTableRow>
         ))}
       </TableBody>

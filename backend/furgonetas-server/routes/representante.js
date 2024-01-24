@@ -8,32 +8,38 @@ router.route('/registrar-representante')
 );
 
 router.route('/consultar-representantes')
-    .get((req, res) => {
+    .post((req, res) => {
         representantesConsulta(req, res);
     }
 );
 
 
 router.route('/nombres-representantes')
-    .get((req, res) => {
+    .post((req, res) => {
         representanteNombres(req, res);
     }
 );
 
-router.route('/editar-representante/:id_representante')
+/*router.route('/editar-representante/:id_representante')
     .get((req, res) => {
         edicionRepresentante(req, res);
     }
-);
+);*/
 
 router.route('/actualizar-representante')
-    .put((req, res) => {
+    .post((req, res) => {
         actualizacionRepresentante(req, res);
     }
 );
 
-router.route('/eliminar-representante/:id_representante')
+/*router.route('/eliminar-representante/:id_representante')
     .delete((req, res) => {
+        eliminacionRepresentante(req, res);
+    }
+);*/
+
+router.route('/eliminar-representante')
+    .post((req, res) => {
         eliminacionRepresentante(req, res);
     }
 );

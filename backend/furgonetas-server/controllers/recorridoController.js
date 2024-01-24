@@ -75,7 +75,7 @@ const recorridoController = {
       });
   },
 
-  edicionRecorrido: async function(req, res){
+  /*edicionRecorrido: async function(req, res){
     await recorridoConsultas.EditarRecorrido([
         req.params.id_recorrido
     ])
@@ -96,7 +96,7 @@ const recorridoController = {
           "Ha ocurrido un error en la BDD al obtener los datos para editar el recorrido: " + err,
       });
     })
-  },
+  },*/
 
   actualizacionRecorrido: async function(req, res){
     await recorridoConsultas.ActualizarRecorrido([
@@ -127,7 +127,7 @@ const recorridoController = {
 
   eliminacionRecorrido: async function(req, res){
     await recorridoConsultas.EliminarRecorrido([
-      req.params.id_recorrido
+      req.body.id_recorrido
     ])
     .then((resp) => {
       console.log("Eliminado el recorrido: ", resp);

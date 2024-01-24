@@ -78,7 +78,7 @@ const conductorController = {
   },
 
   /* Método para extraer los datos de un registro */
-  editarConductor: async function(req, res){
+  /*editarConductor: async function(req, res){
     await conductorConsultas.EditarConductor([
         req.params.id_conductor
     ])
@@ -99,7 +99,7 @@ const conductorController = {
           "Ha ocurrido un error en la BDD al obtener los datos del conductor para editarlos: " + err,
       });
     })
-  },
+  },*/
 
    /*Método para hacer la actualización de un registro */
    actualizarConductor: async function(req, res){
@@ -133,14 +133,14 @@ const conductorController = {
   // Método para eliminar un conductor(se actualiza su estado a false y el registro se conserva en la base de datos con un estado false)
   eliminacionConducor: async function(req, res){
     await conductorConsultas.EliminarConductor([
-      req.params.id_conductor
+      req.body.id_conductor
     ])
     .then((resp) => {
       console.log("Eliminado: ", resp);
       return res.status(200).json({
         result: true,
         code: 200,
-        mensaje: "Se eliminado el conductor",
+        mensaje: "Se ha eliminado el conductor",
       })
     })
     .catch((err) => {

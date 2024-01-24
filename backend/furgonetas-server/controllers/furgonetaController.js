@@ -69,7 +69,7 @@ const furgonetaController = {
       });
   },
 
-  edicionFurgoneta: async function(req, res){
+  /*edicionFurgoneta: async function(req, res){
     await furgonetaConsultas.EditarFurgoneta([
         req.params.id_furgoneta
     ])
@@ -90,7 +90,7 @@ const furgonetaController = {
           "Ha ocurrido un error en la BDD al obtener los datos de la furgoneta a editar: " + err,
       });
     })
-  },
+  },*/
 
   actualizacionFurgoneta: async function(req, res){
     await furgonetaConsultas.ActualizarConductor([
@@ -118,7 +118,7 @@ const furgonetaController = {
 
   eliminacionFurgoneta: async function(req, res){
     await furgonetaConsultas.EliminarFurgoneta([
-      req.params.id_furgoneta
+      req.body.id_furgoneta
     ])
     .then((resp) => {
       console.log("Eliminado: ", resp);

@@ -32,7 +32,7 @@ var conductorConsultas = {
         return conexion.any(query);
     },
 
-    EditarConductor: function(params){
+    /*EditarConductor: function(params){
         let query = `SELECT id_furgoneta,
                             cedula_conductor,
                             nombre_conductor,
@@ -43,7 +43,7 @@ var conductorConsultas = {
                     WHERE id_conductor='${params[0]}'`;
                             
         return conexion.any(query);
-    },
+    },*/
 
     ActualizarConductor: function(params){
         let query = `UPDATE hypermovilidad.tbl_conductor 
@@ -60,8 +60,8 @@ var conductorConsultas = {
 
     EliminarConductor: function(params){
         let query = `UPDATE hypermovilidad.tbl_conductor 
-                     SET  estado_conductor = 'false' 
-                     WHERE id_conductor = '${params[0]}'`;
+                     SET  estado_conductor=false 
+                     WHERE id_conductor='${params[0]}'`;
         
         return conexion.any(query);
     }

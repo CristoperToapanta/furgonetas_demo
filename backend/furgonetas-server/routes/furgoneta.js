@@ -8,32 +8,32 @@ router.route('/registrar-furgoneta')
 );
 
 router.route('/consultar-furgonetas')
-    .get(
+    .post(
         (req, res) => {
             furgonetaConsulta(req, res)
         }
 );
 
 router.route('/placas-furgonetas')
-    .get((req, res) => {
+    .post((req, res) => {
         furgonetaPlacas(req, res)      
     }
 );
 
-router.route('/editar-furgoneta/:id_furgoneta')
+/*router.route('/editar-furgoneta/:id_furgoneta')
     .get((req, res) => {
         edicionFurgoneta(req, res)
     }
-),
+),*/
 
 router.route('/actualizar-furgoneta')
-    .put((req, res) => {
+    .post((req, res) => {
         actualizacionFurgoneta(req, res)
     }
 ),
 
-router.route('/eliminar-furgoneta/:id_furgoneta')
-    .delete((req, res) => {
+router.route('/eliminar-furgoneta')
+    .post((req, res) => {
         eliminacionFurgoneta(req, res)
     }
 ),

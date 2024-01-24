@@ -34,7 +34,7 @@ var pasajeroConsultas = {
 
     },
 
-    EditarPasajero: function(params){
+    /*EditarPasajero: function(params){
         let query = `SELECT id_representante,
                             cedula_pasajero,
                             nombre_pasajero,
@@ -47,7 +47,7 @@ var pasajeroConsultas = {
                      WHERE id_pasajero='${params[0]}'`;
                             
         return conexion.any(query);
-    },
+    },*/
 
     ActualizarPasajero: function(params){
         let query = `UPDATE hypermovilidad.tbl_pasajero
@@ -66,7 +66,7 @@ var pasajeroConsultas = {
 
     EliminarPasajero: function(params){
         let query = `UPDATE hypermovilidad.tbl_pasajero
-                     SET estado_pasajero='false'
+                     SET estado_pasajero=false
                      WHERE id_pasajero='${params[0]}'`;
         
         return conexion.any(query);

@@ -73,7 +73,7 @@ const representanteController = {
       });
   },
 
-  edicionRepresentante: async function(req, res){
+  /*edicionRepresentante: async function(req, res){
     await representanteConsultas.EditarRepresentante([
         req.params.id_representante
     ])
@@ -94,7 +94,7 @@ const representanteController = {
           "Ha ocurrido un error en la BDD al obtener los datos del representante a editar: " + err,
       });
     })
-  },
+  },*/
 
   actualizacionRepresentante: async function(req, res){
     await representanteConsultas.ActualizarRepresentante([
@@ -126,7 +126,7 @@ const representanteController = {
 
   eliminacionRepresentante: async function(req, res){
     await representanteConsultas.EliminarRepresentante([
-      req.params.id_representante
+      req.body.id_representante
     ])
     .then((resp) => {
       console.log("Eliminación representante: ", resp);

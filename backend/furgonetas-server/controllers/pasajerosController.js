@@ -76,7 +76,7 @@ const pasajerosController = {
       });
   },
 
-  edicionPasajero: async function(req, res){
+  /*edicionPasajero: async function(req, res){
     await pasajeroConsultas.EditarPasajero([
         req.params.id_pasajero
     ])
@@ -97,7 +97,7 @@ const pasajerosController = {
           "Ha ocurrido un error en la BDD al obtener los datos del pasajero a editar: " + err,
       });
     })
-  },
+  },*/
 
   actualizacionPasajero: async function(req, res){
     await pasajeroConsultas.ActualizarPasajero([
@@ -131,7 +131,7 @@ const pasajerosController = {
 
   eliminacionPasajero: async function(req, res){
     await pasajeroConsultas.EliminarPasajero([
-      req.params.id_pasajero
+      req.body.id_pasajero
     ])
     .then((resp) => {
       console.log("Pasajero Eliminado: ", resp);

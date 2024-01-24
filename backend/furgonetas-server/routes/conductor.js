@@ -8,31 +8,31 @@ router.route('/registrar-conductor')
 );
 
 router.route('/consultar-conductores')
-    .get((req, res) => {
+    .post((req, res) => {
         listarConductor(req, res);
     }
 );
 
 router.route('/nombres-conductores')
-    .get((req, res) => {
+    .post((req, res) => {
         conductoresNombres(req, res)
     }
 );
 
-router.route('/editar-conductor/:id_conductor')
+/*router.route('/editar-conductor/:id_conductor')
     .get((req, res) => {
         editarConductor(req, res)
     }
-);
+);*/
 
 router.route('/actualizar-conductor')
-    .put((req, res) => {
+    .post((req, res) => {
         actualizarConductor(req, res);
     }
 );
 
-router.route('/eliminar-conductor/:id_conductor')
-    .delete((req, res) => {
+router.route('/eliminar-conductor')
+    .post((req, res) => {
         eliminacionConducor(req, res)
     }
 );

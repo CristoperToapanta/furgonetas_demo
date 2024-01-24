@@ -31,7 +31,7 @@ var representanteConsultas = {
         return conexion.any(query);
     },
 
-    EditarRepresentante: function(params){
+    /*EditarRepresentante: function(params){
         let query = `SELECT cedula_representante,
                             nombre_representante,
                             direccion_representante,
@@ -40,7 +40,7 @@ var representanteConsultas = {
                      WHERE id_representante='${params[0]}'`;
                             
         return conexion.any(query);
-    },
+    },*/
 
     ActualizarRepresentante: function(params){
         let query = `UPDATE hypermovilidad.tbl_representante
@@ -55,7 +55,7 @@ var representanteConsultas = {
 
     EliminarRepresentante: function(params){
         let query = `UPDATE hypermovilidad.tbl_representante
-                     SET estado_representante='false'
+                     SET estado_representante=false
                      WHERE id_representante='${params[0]}'`;
         
         return conexion.any(query);

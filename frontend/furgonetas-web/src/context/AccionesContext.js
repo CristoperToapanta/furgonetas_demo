@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+import {eliminar_representante} from '../server/representanteApi'
 
 // Crear Contexto
 export const AccionContext = createContext()
@@ -16,6 +17,8 @@ export const AccionesContext = ({ children }) => {
     const [recargarConductor, setRecargarConductor] = useState(false);
 
     const [recargarRecorrido, setRecargarRecorrido] = useState(false);
+
+    const [representante, setRepresentante] = useState([]);
 
     // Bandera del Contexto
     const accionPasajeros = () => {
@@ -38,6 +41,16 @@ export const AccionesContext = ({ children }) => {
         setRecargarRecorrido(!recargarRecorrido);
     }
 
+    /* context para la eliminación de un representante */
+    const eliminarRepresentante = async (id) => {
+        try {
+            const respuesta = await eliminar_representante(id);
+            if(respuesta.status === 204) setRepresentante(representante.filter(representante._id !== id));
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+
     // Componente Provider
     return (
         <AccionContext.Provider
@@ -51,7 +64,8 @@ export const AccionesContext = ({ children }) => {
                 recargarConductor,
                 accionConductor,
                 recargarRecorrido,
-                accionRecorrido
+                accionRecorrido,
+                eliminarRepresentante
             }}
         >
             {children}
