@@ -121,7 +121,7 @@ export default function EmbarqueTable() {
                 ) : (
                     <TableBody>
                         <TableRow>
-                            <TableCell colSpan={5} sx={{ height: '25vh' }}>
+                            <TableCell colSpan={7} sx={{ height: '25vh' }}>
                                 <Typography variant="h6" align="center" sx={{ fontWeight: 'bold' }}>
                                     SIN DATOS
                                 </Typography>
