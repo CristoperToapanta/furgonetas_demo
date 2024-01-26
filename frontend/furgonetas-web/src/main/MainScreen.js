@@ -46,27 +46,19 @@ export default function MainScreen() {
                 component="main"
                 sx={{
                     flexGrow: 1,
-                    // p: 3,
                     marginTop: '64.5px',
                     marginLeft: drawerOpen ? '290px' : '0px',
-                    backgroundColor: 'red',
                     height: '100%',
                     transition: 'margin-left 0.25s ease',
                     overflow: 'hidden'
-                    //border: 1,
-                    //borderColor: 'black'
                 }}
             >
                 <Box
-                    border={2}
-                    borderRadius={2}
-                    //mt={1}
-                    //ml={1}
-                    //mr={1}
+                    mt={1}
+                    ml={1}
+                    mr={1}
+                    mb={1}
                     sx={{
-                        //backgroundColor: 'green',
-                        //border: 1,
-                        //borderBlockColor: 'black',
                         height: '50%',
                         display: 'flex',
                         alignItems: 'center',
@@ -75,25 +67,21 @@ export default function MainScreen() {
                     }}
                 >
                     <MainMap />
-                    {/* <Typography variant="h5">
-                        Aquí Mapa
-                    </Typography> */}
                 </Box>
 
                 
                 <Box
-                    mt={1}
+                    
                     ml={1}
                     mr={1}
                     mb={1}
                     sx={{
-                        height: '46.5vh',
-                        overflowY: 'auto',
+                        height: '46.3vh',
+                        //overflowY: 'auto',
                         //overflowX: 'hidden',  // Evita el desplazamiento horizontal
-                        backgroundColor: 'blue' 
+                        //backgroundColor: 'blue' 
                     }}
                 >
-                    
                     {/* Tamaño definido para el Outlet */}
                     <Outlet />
                 </Box>
